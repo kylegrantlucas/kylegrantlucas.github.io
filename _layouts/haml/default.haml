@@ -10,13 +10,17 @@
     %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"}
     {% if site.serving %}
     {% javascript vendor/react %}
+    {% stylesheet vendor/flat-ui %}
+    {% javascript vendor/flat-ui %}
     {% else %}
     {% javascript vendor/react.min %}
+    {% stylesheet vendor/flat-ui.min %}
+    {% javascript vendor/flat-ui.min %}
     {% endif %}
+    
     {% stylesheet main %}
-    {% stylesheet flat-ui %}
     {% javascript main %}
-    {% javascript flat-ui %}
+    
   %body
     {% include header.html %}
     {{content}}
