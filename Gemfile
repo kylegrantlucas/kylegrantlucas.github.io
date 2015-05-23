@@ -6,5 +6,6 @@ gem 'github-pages'
 gem 'jekyll-assets'
 gem 'sprockets-sass'
 gem 'sass'
+gem 'uglifier'
 gem 'compass'
 gem "react-jsx-sprockets"

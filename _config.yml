@@ -73,6 +73,7 @@ exclude:
 
 assets:
   css_compressor: sass
+  js_compressor: uglifier
   sources:
     - _assets/images
     - _assets/javascripts
