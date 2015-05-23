@@ -3,7 +3,7 @@
 ="---"
 
 .side-nav
-  %ul.dot-nav
+  %ul
     ="{% for post in paginator.posts %}"
     %li
       %a{:href => "#number_{{forloop.index}}", "scroll-data" => "number_{{forloop.index}}"}

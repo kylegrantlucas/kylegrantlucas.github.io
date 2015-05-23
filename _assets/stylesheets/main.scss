@@ -1,417 +1,131 @@
-@import url('http://fonts.googleapis.com/css?family=Lato');
+@import url("http://fonts.googleapis.com/css?family=Lato");
+@import "side_nav";
+@import "header";
+@import "footer";
+
+$font-style: Lato, 'Helvetica Neue', Verdana, Geneva, sans-serif;
 
 body {
-  background-color: #aaa;
-}
-
-.main {
-  height: 100%;
-  position: relative;
-}
-
-h1 {
-  font-family: Lato, 'Helvetica Neue', Verdana, Geneva, sans-serif;
-  font-size: 60px;
-  line-height: 1.125;
-  margin-bottom: 10px;
-  letter-spacing: -3px;
-}
-@media (min-width: 800px) {
-  h1 {
-    font-size: 80px;
-  }
-}
-
-h4 {
-  font-family: Lato, 'Helvetica Neue', Verdana, Geneva, sans-serif;
-  font-size: 38px;
-  font-weight: normal;
-  line-height: 55px;
-  margin-bottom: 26.799999237060547px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: 26.799999237060547px;
-  text-align: center;
-}
-
-h3 {
-  color: #E98A22;
-  font-family: Lato, 'Helvetica Neue', Verdana, Geneva, sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 0.85;
-  margin: 0;
-  text-transform: uppercase;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-  padding-bottom: 15px;
-  margin-bottom: 35px;
-}
-@media (min-width: 800px) {
-  h3 {
-    font-size: 23px;
-  }
-}
-
-
-
-p {
-  font-size: 18px;
-  line-height: 28px;
-  font-family: georgia, times, serif;
-  font-weight: normal;
-}
-
-.side-nav {
-  display: none;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  list-style: none;
-  z-index: 997;
-}
-@media (min-width: 500px) and (min-height: 375px) {
-  .side-nav {
-    display: block;
-  }
-}
-.side-nav:before {
-  border-left: 2px solid rgba(255, 255, 255, 0.3);
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  left: 49px;
-}
-
-.dot-nav {
-  list-style: none;
-  position: relative;
-  z-index: 5;
-}
-.dot-nav a {
-  display: inline-block;
-  background: #ddd;
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-  vertical-align: middle;
-  -webkit-transition: all .3s ease-in;
-}
-.dot-nav a:hover {
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
-  background-color: #E98A22;
-  -webkit-transform: scale(2);
-  -ms-transform: scale(2);
-  transform: scale(2);
-}
-.dot-nav a.active {
-  background-color: #E98A22;
-  -webkit-transform: scale(2);
-  -ms-transform: scale(2);
-  transform: scale(2);
-}
-.dot-nav li {
-  margin: 25px 0;
-}
-.dot-nav .first-dot {
-  margin-top: 50px;
-}
-.dot-nav li span {
-  opacity: 0;
-  position: fixed;
-  vertical-align: middle;
-  color: #fff;
-  background: #000;
-  padding: 2px 7px;
-  margin-top: -4px;
-  margin-left: 25px;
-  border-radius: 4px;
-  -webkit-transition: opacity 0.3s ease-in-out;
-  transition: opacity 0.3s ease-in-out;
-  font-size: 14px;
-}
-.dot-nav li span b {
-  display: block;
-  font-size: 18px;
-  line-height: 1;
-  margin-bottom: 5px;
-}
-.dot-nav li a:hover + span {
-  opacity: 1;
-}
-
-.page-block {
-  background-size: cover;
-}
-
-.content {
-  width: 70%;
-  margin: 0 auto;
-  padding: 3em 0;
-  color: #fff;
-  transition: all 0.5s ease-in;
-}
-
-#number_1 {
-  background-color: #27586B;
-}
-
-#number_2 {
-  background-color: #AA4D39;
-}
-
-#number_3 {
-  background-color: #297B48;
-}
-#number_3_main {
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), asset-url("thejazi13-3month.jpg", $digest: true) no-repeat center center fixed;
-  background-size: 100%;
-}
-
-@media (max-width: 1000px) and (min-width: 801px) {
-  #number_3_main {
-    background-size: 150%;
-  }
-}
-
-@media (max-width: 800px) and (min-width: 501px) {
-  #number_3_main {
-    background-size: 200%;
-  }
-}
-
-@media (max-width: 500px) {
-  #number_3_main {
-    background-size: 300%;
-  }
-}
-
-#number_4 {
-  background-color: #27586B;
-  
-}
-
-.subtle-dropshadow {
-  box-shadow: 0 1px 0px rgba(0,0,0,0.25);
-}
-
-#number_5 {
-  background-color: #27586B;
-}
-
-#pages {
-  background-color: #27586B;
-}
-
-footer.info {
-  font-family: Lato, 'Helvetica Neue', Verdana, Geneva, sans-serif;
-  color: #FFFAF0;
-  background: #777;
-  text-align: center;
-}
-
-#toTop img {
-  width: 50px;
-}
-#toTop img:hover {
-  cursor: pointer;
-}
-
-#header {
-  z-index: 2;
-}
-
-#footer {
   background-color: #113F51;
-  position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:200px;
-    z-index:-1;
-  /*transform: translateZ(-1px) scale(2);
-  z-index: -1;*/
-}
+  
+  .main {
+    height: 100%;
+    position: relative;
+    margin-bottom:200px;
+  }
 
-#customPaginator {
-   margin-left: auto;
+  h1 {
+    font-family: $font-style;
+    font-size: 60px;
+    line-height: 1.125;
+    margin-bottom: 10px;
+    letter-spacing: -3px;
+  }
+  @media (min-width: 800px) {
+    h1 {
+      font-size: 80px;
+    }
+  }
+
+  h4 {
+    font-family: $font-style;
+    font-size: 38px;
+    font-weight: normal;
+    line-height: 55px;
+    text-align: center;
+  }
+
+  h3 {
+    color: #E98A22;
+    font-family: $font-style;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 0.85;
+    margin: 0;
+    text-transform: uppercase;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+    padding-bottom: 15px;
+    margin-bottom: 35px;
+  }
+  @media (min-width: 800px) {
+    h3 {
+      font-size: 23px;
+    }
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 28px;
+    font-family: $font-style;
+    font-weight: normal;
+  }
+
+  .page-block {
+    background-size: cover;
+  }
+
+  .content {
+    width: 70%;
+    margin: 0 auto;
+    padding: 3em 0;
+    color: #fff;
+    transition: all 0.5s ease-in;
+  }
+
+  #number_1 {
+    background-color: #27586B;
+  }
+
+  #number_2 {
+    background-color: #AA4D39;
+  }
+
+  #number_3 {
+    background-color: #297B48;
+  }
+
+  #number_3_main {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), asset-url("thejazi13-3month.jpg", $digest: true) no-repeat center center fixed;
+    background-size: 100%;
+  }
+  @media (max-width: 1000px) and (min-width: 801px) {
+    #number_3_main {
+      background-size: 150%;
+    }
+  }
+  @media (max-width: 800px) and (min-width: 501px) {
+    #number_3_main {
+      background-size: 200%;
+    }
+  }
+  @media (max-width: 500px) {
+    #number_3_main {
+      background-size: 300%;
+    }
+  }
+
+  #number_4 {
+    background-color: #27586B;
+  }
+
+  .subtle-dropshadow {
+    box-shadow: 0 1px 0px rgba(0,0,0,0.25);
+  }
+
+  #number_5 {
+    background-color: #27586B;
+  }
+
+  #pages {
+    background-color: #27586B;
+  }
+
+  #customPaginator {
+    margin-left: auto;
     margin-right: auto;
     width: 100%;
     display: inline-block;
     text-align: center;
-}
-
-.header {
-     width: 100%;
-     height: 50px !important;
-    // position: fixed;
-     background-color: white;
-    // margin-left: auto;
-    // margin-right: auto;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-    z-index:100;
-    text-align: center;
-}
-
-.header__link {
-    color: #000;
-    text-decoration: none;
-    border: 0
-}
-
-.header__link:focus {
-    outline: 0;
-    background-color: rgba(78, 205, 196, 0.1)
-}
-
-.header__link:hover .icon {
-    color: #4ecdc4
-}
-
-.header--fixed {
-    position: fixed;
-    z-index: 10;
-    right: 0;
-    left: 0;
-    top: 0
-}
-
-.nav {
-    display: inline-block;
-}
-
-.nav__item {
-    display: inline-block;
-    float: right;
-}
-
-@media screen and (min-width:40em) {
-    .nav__item {
-        display: inline-block;
-        float: right;
-    }
-}
-
-.nav__item:hover {
-    background-color: rgba(78, 205, 196, 0.1)
-}
-
-.nav__item a {
-    display: inline-block;
-    padding: 1em;
-    border: 0;
-}
-
-
-@-webkit-keyframes slideDown {
-  0% {
-    -webkit-transform: translateY(-100%);
-  }
-
-  100% {
-    -webkit-transform: translateY(0);
   }
 }
 
-@-moz-keyframes slideDown {
-  0% {
-    -moz-transform: translateY(-100%);
-  }
-
-  100% {
-    -moz-transform: translateY(0);
-  }
-}
-
-@-o-keyframes slideDown {
-  0% {
-    -o-transform: translateY(-100%);
-  }
-
-  100% {
-    -o-transform: translateY(0);
-  }
-}
-
-@keyframes slideDown {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.animated.slideDown {
-  -webkit-animation-name: slideDown;
-  -moz-animation-name: slideDown;
-  -o-animation-name: slideDown;
-  animation-name: slideDown;
-}
-
-@-webkit-keyframes slideUp {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-
-  100% {
-    -webkit-transform: translateY(-100%);
-  }
-}
-@-moz-keyframes slideUp {
-  0% {
-    -moz-transform: translateY(0);
-  }
-
-  100% {
-    -moz-transform: translateY(-100%);
-  }
-}
-@-o-keyframes slideUp {
-  0% {
-    -o-transform: translateY(0);
-  }
-
-  100% {
-    -o-transform: translateY(-100%);
-  }
-}
-@keyframes slideUp {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(-100%);
-  }
-}
-.animated {
-  -webkit-animation-duration: 0.5s;
-     -moz-animation-duration: 0.5s;
-       -o-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: both;
-     -moz-animation-fill-mode: both;
-       -o-animation-fill-mode: both;
-          animation-fill-mode: both;
-}
-
-.animated.slideUp {
-  -webkit-animation-name: slideUp;
-  -moz-animation-name: slideUp;
-  -o-animation-name: slideUp;
-  animation-name: slideUp;
-}
-
-.main {
-  margin-bottom:200px;
-}
-
-@import "svg-icons";

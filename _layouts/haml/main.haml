@@ -5,7 +5,7 @@
 .side-nav
   %ul.dot-nav
     %li
-      %a.first-dot.active{:href => "#number_1", "scroll-data" => "number_1"}
+      %a{:href => "#number_1", "scroll-data" => "number_1"}
       %span
         %b Kyle Grant Lucas
         Test Heading here
@@ -38,7 +38,6 @@
         = succeed "!)" do
           %a{:href => "/blog"} blog
   %section#number_3_main.page-block{"data-anchor" => "number_3"}
-    .transparency   
     .container-fluid.content
       %h1 Music Drives Me
       %h3 Subtitle Three
