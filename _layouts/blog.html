@@ -1,0 +1,55 @@
+---
+layout: default
+---
+<div class='side-nav'>
+  <ul class='dot-nav'>
+    {% for post in paginator.posts %}
+    <li>
+      <a href='#number_{{forloop.index}}' scroll-data='number_{{forloop.index}}'></a>
+      <span>
+        <b>{{ post.title }}</b>
+      </span>
+    </li>
+    {% endfor %}
+    <ul></ul>
+  </ul>
+</div>
+<div class='main'>
+  {% for post in paginator.posts %}
+  <section class='page-block' data-anchor='number_{{forloop.index}}' id='number_{{forloop.index}}'>
+    <div class='container-fluid content'>
+      <h1>{{post.title}}</h1>
+      <p>{{post.excerpt}}</p>
+      <h3>
+        <a href='{{post.url}}'>Read More...</a>
+      </h3>
+    </div>
+  </section>
+  {% endfor %}
+  {{content}}
+  <section class='page-block' data-anchor='pages' id='pages'>
+    <div class='pagination' id='customPaginator'>
+      <ul>
+        <li class='previous'>
+          <a class='fui-arrow-left' href='{{paginator.previous_page_path}}'></a>
+        </li>
+        {% if paginator.previous_page %}
+        <li>
+          <a href='{{paginator.previous_page_path}}'>{{paginator.previous_page}}</a>
+        </li>
+        {% endif %}
+        <li class='active'>
+          <a href='#fakeLink'>{{paginator.page}}</a>
+        </li>
+        {% if paginator.next_page %}
+        <li>
+          <a href='{{paginator.next_page_path}}'>{{paginator.next_page}}</a>
+        </li>
+        {% endif %}
+        <li class='next'>
+          <a class='fui-arrow-right' href='{{paginator.next_page_path}}'></a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
