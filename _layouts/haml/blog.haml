@@ -8,18 +8,23 @@
     %li
       %a{:href => "#number_{{forloop.index}}", "scroll-data" => "number_{{forloop.index}}"}
       %span
-        %b {{ post.title }}
+        %b {{ post.title | titleize }}
     {% endfor %}
     %ul
 .main
   {% for post in paginator.posts %}
   %section.page-block{"data-anchor" => "number_{{forloop.index}}", :id => "number_{{forloop.index}}"}
     .container-fluid.content
-      %h1 {{post.title}}
-      %h3 {{post.subtitle}}
-      %p {{post.excerpt}}
-      %h4
-        %a{:href => "{{post.url}}"} Read More...
+      %h1 {{post.title | titleize}}
+      {% if post.subtitle %}
+      %h3 {{post.subtitle | titleize }}
+      {% endif %}
+      .divider
+      .post
+        %p {{post.excerpt}}
+      .divider
+      %h5
+        %a{:href => "{{post.url | escape}}"} Read More...
   {% endfor %}
   
   %section#pages.page-block{"data-anchor" => "pages"}

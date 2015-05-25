@@ -6,7 +6,11 @@
 .main
   %section#number_1.page-block{"data-anchor" => "number_1"}
     .container-fluid.content
-      %h1 {{page.title}}
-      %h3 {{page.subtitle}}
-      {{content}}
-      {% include disqus.html %}
+      %h1 {{page.title | titleize}}
+      {% if page.subtitle %}
+      %h3 {{page.subtitle | titleize }}
+      {% endif %}
+      .divider 
+      .post
+        {{content}}
+        {% include disqus.html %}

@@ -1,6 +1,7 @@
 ---
   layout: post
   title: Test 7
+  subtitle: The Way of the future
   number: 7
 ---
 
@@ -9,5 +10,7 @@ Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus aucto
 {% gist 7d1b0252b2f9060797c0 %}
                     
 Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+
+{% embedly https://soundcloud.com/dj-scout/can-you-feel-my-heart-scout %} 
                     
 Aenean lacinia bibendum nulla sed consectetur. Curabitur blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla.

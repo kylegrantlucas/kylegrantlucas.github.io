@@ -1,13 +1,23 @@
-@import url("http://fonts.googleapis.com/css?family=Lato");
+// Import Vendor Assets
+@import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic");
 @import "compass/css3/box-shadow";
+
+// Define Constants
+$font-style: Lato, sans-serif;
+$orange: #E98A22;
+$light-blue: #27586B;
+$dark-blue: #113F51;
+$red: #AA4D39;
+$green: #297B48;
+
+// Import Partials (dependent on above declarations)
 @import "side_nav";
 @import "header";
 @import "footer";
-
-$font-style: Lato, sans-serif;
+@import "post";
 
 body {
-  background: linear-gradient(0deg, #113F51 70%, #27586B 30%);
+  background: linear-gradient(0deg, $dark-blue 70%, $light-blue 30%);
   background-attachment: fixed;
   
   .main {
@@ -21,6 +31,7 @@ body {
     font-size: 60px;
     line-height: 1.125;
     margin-bottom: 10px;
+    margin-top: 10px;
     letter-spacing: -3px;
   }
   @media (min-width: 800px) {
@@ -29,29 +40,44 @@ body {
     }
   }
 
+  h3 {
+    color: $orange;
+    font-family: $font-style;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 0.85;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
   h4 {
     font-family: $font-style;
     font-size: 38px;
     font-weight: normal;
     line-height: 55px;
     text-align: center;
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: $orange
+    }
   }
 
-  h3 {
-    color: #E98A22;
+  h5 {
     font-family: $font-style;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 0.85;
-    margin: 0;
-    text-transform: uppercase;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-    padding-bottom: 15px;
-    margin-bottom: 35px;
-  }
-  @media (min-width: 800px) {
-    h3 {
-      font-size: 23px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 42px;
+
+    a {
+      color: #fff;
+    }
+
+    a:hover {
+      color: $orange;
     }
   }
 
@@ -59,7 +85,11 @@ body {
     font-size: 18px;
     line-height: 28px;
     font-family: $font-style;
-    font-weight: normal;
+  }
+
+  .divider {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+    margin-bottom: 15px;
   }
 
   .page-block {
@@ -75,15 +105,15 @@ body {
   }
 
   #number_1 {
-    background-color: #27586B;
+    background-color: $light-blue;
   }
 
   #number_2 {
-    background-color: #AA4D39;
+    background-color: $red;
   }
 
   #number_3 {
-    background-color: #297B48;
+    background-color: $green;
   }
 
   #number_3_main {
@@ -107,7 +137,7 @@ body {
   }
 
   #number_4 {
-    background-color: #27586B;
+    background-color: $light-blue;
   }
 
   .subtle-dropshadow {
@@ -115,11 +145,11 @@ body {
   }
 
   #number_5 {
-    background-color: #27586B;
+    background-color: $light-blue;
   }
 
   #pages {
-    background-color: #27586B;
+    background-color: $light-blue;
   }
 
   #customPaginator {

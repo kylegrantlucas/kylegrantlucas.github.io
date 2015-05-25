@@ -78,3 +78,6 @@ assets:
     - _assets/images
     - _assets/javascripts
     - _assets/stylesheets
+
+embedly:
+  api_key: a4d9a793fee74c09984a512b5d204516

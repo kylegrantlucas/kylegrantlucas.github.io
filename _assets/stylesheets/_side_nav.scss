@@ -30,13 +30,13 @@
     a:hover {
       -webkit-transition: all 0.15s ease-in-out;
       transition: all 0.15s ease-in-out;
-      background-color: #E98A22;
+      background-color: $orange;
       -webkit-transform: scale(2);
       -ms-transform: scale(2);
       transform: scale(2);
     }
     a.active {
-      background-color: #E98A22;
+      background-color: $orange;
       -webkit-transform: scale(2);
       -ms-transform: scale(2);
       transform: scale(2);

@@ -16,7 +16,6 @@ header {
   }
   link:focus {
     outline: 0;
-    background-color: rgba(78, 205, 196, 0.1)
   }
 
   nav {
@@ -24,12 +23,13 @@ header {
     li {
       float: right;
       a {
+        color: $orange;
         padding: 1em;
         border: 0;
       }
-    }
-    li:hover {
-      background-color: rgba(78, 205, 196, 0.1)
+      a:hover {
+        color: $orange;
+      }
     }
   }
 }

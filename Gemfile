@@ -3,7 +3,7 @@ gem 'rake'
 gem 'haml'
 gem "capistrano", "~>2.15.4"
 gem 'jekyll'
-gem 'jekyll-sitemap'
+
 gem 'jekyll-assets'
 gem 'sprockets-sass'
 gem 'sass'
@@ -11,11 +11,16 @@ gem 'uglifier'
 gem 'compass'
 gem "react-jsx-sprockets"
 gem 'json'
-gem 'dominatrix'
+gem 'domainatrix'
 
 
 group :jekyll_plugins do
+  # gem 'jekyll-minifier'
+  gem 'jekyll-sitemap'
+  gem 'jekyll-compose'
+  gem 'jekyll-feed'
   gem 'jemoji'
+  gem 'octopress-filters'
   gem "octopress-date-format"#, path: "../../date-format"
   gem "octopress-gist"#, path: "../../gist"
   gem "octopress-quote-tag"#, path: "../../quote-tag"

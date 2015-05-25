@@ -9,9 +9,10 @@ $(document).ready(function() {
       "unpinned": "slideUp"
     }
   });
+
   $($('.side-nav ul a')[0]).addClass('first-dot');
   $($('.side-nav ul a')[0]).addClass('active');
-  $('.dot-nav a').on('click', function() {
+  $('.side-nav ul a').on('click', function() {
     var scrollAnchor = $(this).attr('scroll-data'),
     scrollPoint = $('section[data-anchor="' + scrollAnchor + '"]').offset().top;
     $('body').stop().animate({
@@ -30,12 +31,12 @@ $(document).ready(function() {
   $(document).scroll(function () {
     // add class active to nav a on scroll
     var scrollPos = $(document).scrollTop() + 100;
-    $('.dot-nav a').each(function () {
+    $('.side-nav ul a').each(function () {
       var currLink = $(this);
       var scrollAnchor = $(this).attr('scroll-data');
       var refElement = $('section[data-anchor="' + scrollAnchor + '"]');
       if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
-        $('.dot-nav a.active').removeClass("active");
+        $('.side-nav ul a.active').removeClass("active");
         currLink.addClass("active");
       } 
     });
