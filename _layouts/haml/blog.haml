@@ -6,7 +6,11 @@
   %ul
     {% for post in paginator.posts %}
     %li
+      {% if forloop.index == 1 %}
+      %a.first-dot.active{:href => "#number_{{forloop.index}}", "scroll-data" => "number_{{forloop.index}}"}
+      {% else %}
       %a{:href => "#number_{{forloop.index}}", "scroll-data" => "number_{{forloop.index}}"}
+      {% endif %}
       %span
         %b {{ post.title | titleize }}
     {% endfor %}

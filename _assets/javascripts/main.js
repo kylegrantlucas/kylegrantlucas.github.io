@@ -10,8 +10,6 @@ $(document).ready(function() {
     }
   });
 
-  $($('.side-nav ul a')[0]).addClass('first-dot');
-  $($('.side-nav ul a')[0]).addClass('active');
   $('.side-nav ul a').on('click', function() {
     var scrollAnchor = $(this).attr('scroll-data'),
     scrollPoint = $('section[data-anchor="' + scrollAnchor + '"]').offset().top;

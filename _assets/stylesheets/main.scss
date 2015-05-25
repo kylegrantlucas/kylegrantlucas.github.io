@@ -1,5 +1,7 @@
 // Import Vendor Assets
 @import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic");
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "compass/css3/box-shadow";
 
 // Define Constants
@@ -158,6 +160,24 @@ body {
     width: 100%;
     display: inline-block;
     text-align: center;
+
+    li.active>a {
+      background-color: $orange;
+    }
+
+    a:hover {
+      background-color: $orange;
+    }
+
+    .fui-arrow-right:before {
+      content: "\f061";
+      font-family: FontAwesome;
+    }
+
+    .fui-arrow-left:before {
+      content: "\f060";
+      font-family: FontAwesome;
+    }
   }
 }
 
