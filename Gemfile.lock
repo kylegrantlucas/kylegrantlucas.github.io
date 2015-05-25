@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    RedCloth (4.2.9)
     activesupport (4.2.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -38,33 +37,13 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
-    execjs (2.2.2)
+    dominatrix (1.1.1)
+    execjs (2.5.2)
     fast-stemmer (1.0.2)
     fastimage (1.7.0)
       addressable (~> 2.3, >= 2.3.5)
     ffi (1.9.8)
     gemoji (2.1.0)
-    github-pages (35)
-      RedCloth (= 4.2.9)
-      github-pages-health-check (~> 0.2)
-      jekyll (= 2.4.0)
-      jekyll-coffeescript (= 1.0.1)
-      jekyll-mentions (= 0.2.1)
-      jekyll-redirect-from (= 0.6.2)
-      jekyll-sass-converter (= 1.2.0)
-      jekyll-sitemap (= 0.8.1)
-      jemoji (= 0.4.0)
-      kramdown (= 1.5.0)
-      liquid (= 2.6.2)
-      maruku (= 0.7.0)
-      mercenary (~> 0.3)
-      pygments.rb (= 0.6.1)
-      rdiscount (= 2.1.7)
-      redcarpet (= 3.1.2)
-      terminal-table (~> 1.4)
-    github-pages-health-check (0.3.1)
-      net-dns (~> 0.6)
-      public_suffix (~> 1.4)
     haml (4.0.6)
       tilt
     highline (1.7.2)
@@ -74,7 +53,7 @@ GEM
       activesupport (>= 2)
       nokogiri (~> 1.4)
     i18n (0.7.0)
-    jekyll (2.4.0)
+    jekyll (2.5.3)
       classifier-reborn (~> 2.0)
       colorator (~> 0.1)
       jekyll-coffeescript (~> 1.0)
@@ -100,13 +79,8 @@ GEM
     jekyll-coffeescript (1.0.1)
       coffee-script (~> 2.2)
     jekyll-gist (1.2.1)
-    jekyll-mentions (0.2.1)
-      html-pipeline (~> 1.9.0)
-      jekyll (~> 2.0)
     jekyll-paginate (1.1.0)
-    jekyll-redirect-from (0.6.2)
-      jekyll (~> 2.0)
-    jekyll-sass-converter (1.2.0)
+    jekyll-sass-converter (1.3.0)
       sass (~> 3.2)
     jekyll-sitemap (0.8.1)
     jekyll-watch (1.2.1)
@@ -116,19 +90,17 @@ GEM
       html-pipeline (~> 1.9)
       jekyll (~> 2.0)
     json (1.8.2)
-    kramdown (1.5.0)
+    kramdown (1.7.0)
     liquid (2.6.2)
     listen (2.10.0)
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    maruku (0.7.0)
     mercenary (0.3.5)
     mini_magick (4.2.4)
     mini_portile (0.6.2)
     minitest (5.6.1)
     multi_json (1.11.0)
-    net-dns (0.8.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -138,18 +110,64 @@ GEM
       net-ssh (>= 2.6.5)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    octopress-abort-tag (1.0.2)
+      jekyll (~> 2.0)
+      octopress-tag-helpers (~> 1.0)
+    octopress-assign-tag (1.0.3)
+      jekyll (>= 2.0)
+      octopress-tag-helpers (~> 1.0)
+    octopress-capture-tag (1.0.2)
+      jekyll (>= 2.0)
+      octopress-tag-helpers (~> 1.0)
     octopress-code-highlighter (4.2.4)
       colorator (~> 0.1)
       octopress-hooks
+    octopress-comment-tag (1.0.1)
+      jekyll
+    octopress-content-for (1.0.4)
+      jekyll (~> 2.0)
+      octopress-tag-helpers (~> 1.0)
+    octopress-date-format (3.0.2)
+      jekyll (~> 2.0)
+      octopress-hooks (~> 2.0)
     octopress-gist (1.3.5)
       octopress-code-highlighter (~> 4.2)
     octopress-hooks (2.6.1)
       jekyll (>= 2.0)
+    octopress-image-tag (1.1.0)
+      jekyll
+    octopress-include-tag (1.1.3)
+      jekyll (>= 2.0)
+      octopress-tag-helpers (~> 1.0)
+    octopress-markdown-tag (1.1.2)
+      jekyll (~> 2.0)
+    octopress-pullquote-tag (1.0.1)
+      jekyll
+      rubypants-unicode
+    octopress-quote-tag (1.0.4)
+      jekyll
+      rubypants
+    octopress-render-tag (1.0.7)
+      jekyll (>= 2.0)
+      octopress-tag-helpers (~> 1.0)
+    octopress-return-tag (1.0.1)
+      jekyll
+      octopress-tag-helpers (~> 1.0)
+    octopress-tag-helpers (1.0.8)
+      jekyll (>= 2.0)
+    octopress-video-tag (1.1.1)
+      jekyll (~> 2.0)
+    octopress-wrap-tag (1.1.1)
+      jekyll (>= 2.0)
+      octopress-content-for (~> 1.0)
+      octopress-include-tag (~> 1.0)
+      octopress-render-tag (~> 1.0)
+      octopress-return-tag (~> 1.0)
+      octopress-tag-helpers (~> 1.0)
     parslet (1.5.0)
       blankslate (~> 2.0)
     posix-spawn (0.3.11)
-    public_suffix (1.5.1)
-    pygments.rb (0.6.1)
+    pygments.rb (0.6.3)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.2.0)
     rack (1.6.1)
@@ -157,15 +175,16 @@ GEM
     rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    rdiscount (2.1.7)
     react-jsx-sprockets (0.2.0)
       execjs (>= 1.2.9)
       sprockets (>= 2.0.3)
       tilt (>= 1.3.3)
       yajl-ruby
-    redcarpet (3.1.2)
+    redcarpet (3.2.3)
+    rubypants (0.2.0)
+    rubypants-unicode (0.2.5)
     safe_yaml (1.0.4)
-    sass (3.4.13)
+    sass (3.4.14)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -176,7 +195,6 @@ GEM
     sprockets-sass (1.3.1)
       sprockets (~> 2.0)
       tilt (~> 1.1)
-    terminal-table (1.4.5)
     thread_safe (0.3.5)
     tilt (1.4.1)
     timers (4.0.1)
@@ -185,7 +203,7 @@ GEM
       parslet (~> 1.5.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.5.3)
+    uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     yajl-ruby (1.2.1)
@@ -196,10 +214,28 @@ PLATFORMS
 DEPENDENCIES
   capistrano (~> 2.15.4)
   compass
-  github-pages
+  dominatrix
   haml
+  jekyll
   jekyll-assets
+  jekyll-sitemap
+  jemoji
+  json
+  octopress-abort-tag
+  octopress-assign-tag
+  octopress-capture-tag
+  octopress-comment-tag
+  octopress-content-for
+  octopress-date-format
   octopress-gist
+  octopress-image-tag
+  octopress-markdown-tag
+  octopress-pullquote-tag
+  octopress-quote-tag
+  octopress-render-tag
+  octopress-return-tag
+  octopress-video-tag
+  octopress-wrap-tag
   rake
   react-jsx-sprockets
   sass
