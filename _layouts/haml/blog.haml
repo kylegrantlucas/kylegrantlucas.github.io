@@ -4,7 +4,7 @@
 
 .side-nav
   %ul
-    ="{% for post in paginator.posts %}"
+    {% for post in paginator.posts %}
     %li
       %a{:href => "#number_{{forloop.index}}", "scroll-data" => "number_{{forloop.index}}"}
       %span
@@ -12,30 +12,30 @@
     {% endfor %}
     %ul
 .main
-  ="{% for post in paginator.posts %}"
+  {% for post in paginator.posts %}
   %section.page-block{"data-anchor" => "number_{{forloop.index}}", :id => "number_{{forloop.index}}"}
     .container-fluid.content
       %h1 {{post.title}}
+      %h3 {{post.subtitle}}
       %p {{post.excerpt}}
-      %h3
+      %h4
         %a{:href => "{{post.url}}"} Read More...
-  ="{% endfor %}"
+  {% endfor %}
   
-  {{content}}
   %section#pages.page-block{"data-anchor" => "pages"}
     #customPaginator.pagination
       %ul
         %li.previous
           %a.fui-arrow-left{:href => "{{paginator.previous_page_path}}"}
-        ="{% if paginator.previous_page %}"
+        {% if paginator.previous_page %}
         %li
           %a{:href => "{{paginator.previous_page_path}}"} {{paginator.previous_page}}
-        ="{% endif %}"
+        {% endif %}
         %li.active
           %a{:href => "#fakeLink"} {{paginator.page}}
-        ="{% if paginator.next_page %}"
+        {% if paginator.next_page %}
         %li
           %a{:href => "{{paginator.next_page_path}}"} {{paginator.next_page}}
-        ="{% endif %}"
+        {% endif %}
         %li.next
           %a.fui-arrow-right{:href => "{{paginator.next_page_path}}"}

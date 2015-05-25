@@ -5,6 +5,8 @@
 ---
 
 Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Sed posuere consectetur est at lobortis.
+
+{% gist 7d1b0252b2f9060797c0 gistfile1.rb %}
                     
 Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
                     
