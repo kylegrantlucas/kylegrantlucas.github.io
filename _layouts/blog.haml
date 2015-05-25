@@ -1,6 +1,6 @@
-="---"
-="layout: default"
-="---"
+---
+layout: default
+---
 
 .side-nav
   %ul
@@ -25,7 +25,7 @@
       {% endif %}
       .divider
       .post
-        %p {{post.excerpt}}
+        %p {{post.excerpt | emojify}}
       .divider
       %h5
         %a{:href => "{{post.url | escape}}"} Read More...
