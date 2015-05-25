@@ -9,3 +9,6 @@ gem 'sass'
 gem 'uglifier'
 gem 'compass'
 gem "react-jsx-sprockets"
+gem 'octopress-gist'
+gem 'octopress-solarized'
+gem 'octopress-autoprefixer'
