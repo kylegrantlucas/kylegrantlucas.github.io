@@ -7,16 +7,16 @@ layout: default
     {% for post in paginator.posts %}
     %li
       {% if forloop.index == 1 %}
-      %a.first-dot.active{:href => "#number_{{forloop.index}}", "scroll-data" => "number_{{forloop.index}}"}
+      %a.first-dot.active{:href => "#number_{{forloop.index}}", "scroll-data" => "{{forloop.index}}"}
       {% else %}
-      %a{:href => "#number_{{forloop.index}}", "scroll-data" => "number_{{forloop.index}}"}
+      %a{:href => "#number_{{forloop.index}}", "scroll-data" => "{{forloop.index}}"}
       {% endif %}
       %span
         %b {{ post.title | titleize }}
     {% endfor %}
 .main
   {% for post in paginator.posts %}
-  %section.page-block{"data-anchor" => "number_{{forloop.index}}", :id => "number_{{forloop.index}}"}
+  %section.page-block{"data-anchor" => "{{forloop.index}}", :id => "number_{{forloop.index}}"}
     .container-fluid.content
       %h1 {{post.title | titleize}}
       {% if post.subtitle %}
