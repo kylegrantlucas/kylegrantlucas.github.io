@@ -8,8 +8,6 @@ Session.vim
 .netrwhist
 *~
 
-*.html
-
 ### OSX ###
 .DS_Store
 .AppleDouble
@@ -211,3 +209,5 @@ tramp
 
 # sftp configuration file
 sftp-config.json
+.gist-cache
+.code-highlighter-cache
