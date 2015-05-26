@@ -106,6 +106,14 @@ body {
     font-size: 18px;
     line-height: 28px;
     font-family: $font-style;
+    a {
+        color: $orange;
+        text-decoration: none;
+      }
+      a:hover {
+        color: $orange;
+        text-decoration: underline;
+      }
   }
 
   .divider {
