@@ -25,7 +25,7 @@ layout: default
       {% endif %}
       .divider
       .post
-        %p {{post.excerpt | emojify}}
+        %p {{post.excerpt}}
       .divider
       %h5
         %a{:href => "{{post.url | escape}}"} Read More...

@@ -26,6 +26,6 @@
     
   %body
     {% convert_include header.haml %}
-    {{content}}
+    {{content | emojify}}
     {% convert_include footer.haml %}
     {% convert_include analytics.haml %}
