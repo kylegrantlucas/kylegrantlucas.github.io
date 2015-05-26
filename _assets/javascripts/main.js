@@ -11,8 +11,13 @@ $(document).ready(function() {
   });
 
   $('.side-nav ul a').on('click', function() {
-    var scrollAnchor = $(this).attr('scroll-data'),
-    scrollPoint = $('section[data-anchor="' + scrollAnchor + '"]').offset().top;
+    var curAnchor = $('.side-nav ul a.active').attr('scroll-data');
+    var scrollAnchor = $(this).attr('scroll-data');
+    if (parseInt(curAnchor) < parseInt(scrollAnchor)) {
+      var scrollPoint = $('section[data-anchor="' + scrollAnchor + '"]').offset().top;
+    } else {
+      var scrollPoint = $('section[data-anchor="' + scrollAnchor + '"]').offset().top-50;
+    }
     $('body').stop().animate({
       scrollTop: scrollPoint
     }, 1000);
