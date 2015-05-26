@@ -14,7 +14,6 @@ layout: default
       %span
         %b {{ post.title | titleize }}
     {% endfor %}
-    %ul
 .main
   {% for post in paginator.posts %}
   %section.page-block{"data-anchor" => "number_{{forloop.index}}", :id => "number_{{forloop.index}}"}
