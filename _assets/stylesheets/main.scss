@@ -7,10 +7,11 @@
 // Define Constants
 $font-style: Lato, sans-serif;
 $orange: #E98A22;
+$purple: #433955;
 $light-blue: #27586B;
 $dark-blue: #113F51;
 $red: #AA4D39;
-$green: #297B48;
+$green: #39553E;
 
 // Import Partials (dependent on above declarations)
 @import "side_nav";
@@ -166,7 +167,7 @@ body {
   }
 
   #number_4 {
-    background-color: $light-blue;
+    background-color: $purple;
   }
 
   .subtle-dropshadow {
