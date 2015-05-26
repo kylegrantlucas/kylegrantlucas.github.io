@@ -80,9 +80,11 @@ body {
     text-align: center;
     a {
       color: #fff;
-      text-decoration: underline;
+      .underline {
+        display: inline-block;
+        text-decoration: underline;
+      }
     }
-
     a:hover {
       color: $orange
     }
