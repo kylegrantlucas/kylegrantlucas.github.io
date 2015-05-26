@@ -2,7 +2,7 @@
 @import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic");
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "compass/css3/box-shadow";
+@import "compass/css3";
 
 // Define Constants
 $font-style: Lato, sans-serif;
@@ -26,6 +26,7 @@ body {
     height: 100%;
     position: relative;
     margin-bottom:200px;
+    top: 50px;
   }
 
   h1 {
@@ -35,6 +36,18 @@ body {
     margin-bottom: 10px;
     margin-top: 10px;
     letter-spacing: -3px;
+  }
+  @media (max-width: 300px) {
+    h1 {
+      font-size: 38px;
+      letter-spacing: -2px;
+    }
+  }
+  @media (max-width: 500px) {
+    h1 {
+      font-size: 40px;
+      letter-spacing: -2px;
+    }
   }
   @media (min-width: 800px) {
     h1 {
@@ -50,6 +63,12 @@ body {
     line-height: 0.85;
     margin-top: 15px;
     margin-bottom: 15px;
+  }
+  @media (max-width: 500px) {
+    h3 {
+      font-size: 16px;
+      letter-spacing: -1px;
+    }
   }
 
   h4 {
@@ -101,7 +120,7 @@ body {
   .content {
     width: 70%;
     margin: 0 auto;
-    padding: 3em 0;
+    padding: 1em 0;
     color: #fff;
     transition: all 0.5s ease-in;
   }
@@ -119,7 +138,7 @@ body {
   }
 
   #number_3_main {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), asset-url("thejazi13-3month.jpg", $digest: true) no-repeat center center fixed;
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), asset-url("thejazi13-3month.jpg", $digest: true) repeat center center fixed;
     background-size: 100%;
   }
   @media (max-width: 1000px) and (min-width: 801px) {
@@ -177,6 +196,29 @@ body {
     .fui-arrow-left:before {
       content: "\f060";
       font-family: FontAwesome;
+    }
+  }
+
+  .mycontent-left {
+    border-right: 1px solid #333;
+  }
+
+  .col-xs-6 {
+    margin-top: 30px;
+    i {
+      font-size: 60px;
+      display:block;
+      text-align:center;
+      margin-bottom: 15px;
+    }
+    h4 {
+      a {
+        color: $orange;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

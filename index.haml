@@ -9,48 +9,56 @@ title: Kyle Lucas
       %a.first-dot.active{:href => "#number_1", "scroll-data" => "number_1"}
       %span
         %b Kyle Grant Lucas
-        Test Heading here
     %li
       %a{:href => "#number_2", "scroll-data" => "number_2"}
       %span
-        %b Title
-        Subtitle
+        %b I Like To Code
     %li
       %a{:href => "#number_3", "scroll-data" => "number_3"}
       %span
-        %b Title2
-        Subtitle2
+        %b Music Drives Me
     %li
       %a{:href => "#number_4", "scroll-data" => "number_4"}
       %span
         %b Title3
-        Subtitle3
 .main
   %section#number_1.page-block{"data-anchor" => "number_1"}
     .container-fluid.content
       %h1 Kyle Grant Lucas
-      %h3 Welcome to my site...
-      .divider
-      %p Software Engineer. Music Lover. Rubyist.
+      %h3 Software Engineer. Music Lover. Rubyist.
   %section#number_2.page-block{"data-anchor" => "number_2"}
     .container-fluid.content
       %h4
-        I like to code. (Check out my
-        = succeed "!)" do
-          %a{:href => "/blog"} blog
+        %a{href: "https://github.com/kylegrantlucas"} I like to code.
   %section#number_3_main.page-block{"data-anchor" => "number_3"}
     .container-fluid.content
       %h1 Music Drives Me
       %h3 Subtitle Three
       .divider
-      %p Past my passion for code and software is my deep passion for music. Since I was a child i've been trying to find new bands and learn new instruments whenever I can.
-      %p Music fuels me so much in fact that I founded a startup completely oriented around disovering and sharing music with your friends, [Resound.fm](http://resound.fm)
-      %p Aenean lacinia bibendum nulla sed consectetur. Curabitur blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla.
+      %p 
+        Past my passion for code and software is my deep passion for music. Since I was a child i've been trying to find new bands and learn new instruments whenever I can.
+      %p 
+        Music fuels me so much in fact that I founded a startup completely oriented around disovering and sharing music with your friends,
+        = succeed "." do  
+          %a{href: "https://resound.fm"} Resound
+      %p 
+        Aenean lacinia bibendum nulla sed consectetur. Curabitur blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla.
   %section#number_4.page-block{"data-anchor" => "number_4"}
     .container-fluid.content
-      %h1 Projects
-      %h3 Subtitle Four
+      %h1 Personal Projects
       .divider
-      %p Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Sed posuere consectetur est at lobortis.
-      %p Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
-      %p Aenean lacinia bibendum nulla sed consectetur. Curabitur blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla.
+      .row
+        .col-xs-6.mycontent-left.project-text
+          %i.fa.fa-cutlery#project-icon
+          %p
+            %h4
+              %a{href: ''}Takeout
+          %p
+            Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. 
+        .col-xs-6
+          %i.glyphicon.glyphicon-cd#project-icon
+          %p
+            %h4
+              %a{href: ''}Wax  
+          %p
+            Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. 
