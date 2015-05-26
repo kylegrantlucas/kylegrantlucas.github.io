@@ -11,11 +11,10 @@
     {% else %}
     {% stylesheet vendor/flat-ui.min %}
     {% endif %}
-    
+
     {% stylesheet main %}
     {% stylesheet syntax %}
-    %title {{page.title}}
-    
+    %title {{page.title}}  
   %body
     {% convert_include header.haml %}
     {{content}}
@@ -35,3 +34,4 @@
     {% endif %}
 
     {% javascript main %}
+    {% javascript SideNav %}

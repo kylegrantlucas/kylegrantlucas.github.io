@@ -1,19 +1,13 @@
 ---
 layout: default
 ---
+:javascript
+  var items = [];
+  {% for post in paginator.posts %}
+    items.push("{{post.title | titleize }}");
+  {% endfor %}
 
 .side-nav
-  %ul
-    {% for post in paginator.posts %}
-    %li
-      {% if forloop.index == 1 %}
-      %a.first-dot.active{:href => "#number_{{forloop.index}}", "scroll-data" => "{{forloop.index}}"}
-      {% else %}
-      %a{:href => "#number_{{forloop.index}}", "scroll-data" => "{{forloop.index}}"}
-      {% endif %}
-      %span
-        %b {{ post.title | titleize }}
-    {% endfor %}
 .main
   {% for post in paginator.posts %}
   %section.page-block{"data-anchor" => "{{forloop.index}}", :id => "number_{{forloop.index}}"}
@@ -47,3 +41,4 @@ layout: default
         {% endif %}
         %li.next
           %a.fui-arrow-right{:href => "{{paginator.next_page_path}}"}
+
