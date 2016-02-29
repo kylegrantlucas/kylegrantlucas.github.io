@@ -1,0 +1,37 @@
+---
+---
+
+!!!
+%html
+  %head
+    {% convert_include meta.haml %}
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css", :rel => "stylesheet"}/
+    {% if site.serving %}
+    {% stylesheet vendor/flat-ui %}
+    {% else %}
+    {% stylesheet vendor/flat-ui.min %}
+    {% endif %}
+
+    {% stylesheet main %}
+    {% stylesheet syntax %}
+    %title {{page.title}}  
+  %body
+    {% convert_include header.haml %}
+    {{content}}
+    {% convert_include footer.haml %}
+    {% convert_include analytics.haml %}
+
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/headroom/0.7.0/headroom.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/headroom/0.7.0/jQuery.headroom.min.js"}
+    %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"}
+    {% if site.serving %}
+    {% javascript vendor/react %}
+    {% javascript vendor/flat-ui %}
+    {% else %}
+    {% javascript vendor/react.min %}
+    {% javascript vendor/flat-ui.min %}
+    {% endif %}
+
+    {% javascript main %}
+    {% javascript SideNav %}
