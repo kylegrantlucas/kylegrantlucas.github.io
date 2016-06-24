@@ -8,7 +8,7 @@ title: Kyle Lucas
   %section#number_1.page-block{"data-anchor" => "1"}
     .container-fluid.content
       %h1 Kyle Grant Lucas
-      %h3 Software Engineer. Music Lover. Rubyist.
+      %h3 Software Engineer. Music Lover. Home Automator. Rubyist.
   %section#number_2.page-block{"data-anchor" => "2"}
     .container-fluid.content
       %h4
@@ -17,17 +17,17 @@ title: Kyle Lucas
           %i.fa.fa-github-alt
   %section#number_3_main.page-block{"data-anchor" => "3"}
     .container-fluid.content
-      %h1 Music Drives Me
-      %h3 Subtitle Three
+      %h1 Remotes Are Obsolete
+      %h3 (Seriously)
       .divider
       %p 
-        Past my passion for code and software is my deep passion for music. Since I was a child i've been trying to find new bands and learn new instruments whenever I can.
+        Intro Paragraph
       %p 
-        Music fuels me so much in fact that I founded a startup completely oriented around disovering and sharing music with your friends,
-        = succeed "." do  
-          %a{href: "https://resound.fm"} Resound.fm
-      %p 
-        Aenean lacinia bibendum nulla sed consectetur. Curabitur blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla.
+        Most recently, I built a framework using Ruby (and more specifically Sinatra) to interact with Amazon's Alexa API called SingingAssistant. 
+        Using the framework you can build small, modular plugins that allow for cool interaction with Amazon's Alexa devices.
+      %p  
+        Examples of this that I have built include controling your Phillips Hue lights with more granular control than Amazon provides,
+        queueing  up movies to download with CouchPotato, checking the status of your downloads in Transmission, and even getting you latest Halo 5 statistics!
   %section#number_4.page-block{"data-anchor" => "4"}
     .container-fluid.content
       %h1 Personal Projects
@@ -37,48 +37,86 @@ title: Kyle Lucas
           %i.fa.fa-cutlery#project-icon
           %p
             %h4
-              %a{href: ''}Takeout
+              %a{href: 'http://github.com/kylegrantlucas/Takeout'}Takeout
           %p
-            Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. 
-        .col-md-6.col-xs-12
-          %i.glyphicon.glyphicon-cd#project-icon
+            Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.
+        .col-md-6.col-xs-12.mycontent-left
+          %i.fa.fa-microphone#project-icon
           %p
             %h4
-              %a{href: ''}Wax  
+              %a{href: 'http://github.com/kylegrantlucas/SingingAssistant'}SingingAssistant 
           %p
-            Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam.
-  %section#number_5.page-block{"data-anchor" => "5"}
+            Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.
+      .divider              
+      .row
+        .col-md-6.col-xs-12.mycontent-left
+          %i.fa.fa-reddit-alien#project-icon
+          %p
+            %h4
+              %a{href: 'http://github.com/kylegrantlucas/Readit'}Readit
+          %p
+            Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.
+        .col-md-6.col-xs-12.mycontent-left
+          %i.fa.fa-bar-chart#project-icon
+          %p
+            %h4
+              %a{href: 'http://github.com/kylegrantlucas/halo_stats'}Halo Stats
+          %p
+            Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.
+  %section#number_5_main.page-block{"data-anchor" => "5"}
+    .container-fluid.content
+      %h1 Passion Drives Me
+      %h3 (I take my hobbies seriously)
+      .divider
+      %p 
+        Past my passion for code and software is my deep passion for music. Since I was a child i've been trying to find new bands and learn new instruments whenever I can.
+      %p 
+        Music fuels me so much in fact that I founded a startup completely oriented around disovering and sharing music with your friends,
+        = succeed "." do  
+          %a{href: "https://resound.fm"} Resound.fm
+      %p 
+        My other lifetime passion has always been automation, since I was little i've been rigging up way to have tasks completed for me with minimal input. 
+        Only recently though has the technology developed to the point (and my budget grown enough) to develop some truly cool home automation experiences.     
+  %section#number_6.page-block{"data-anchor" => "6"}
     .container-fluid.content
       %h1 Work Experience
       .divider
       .row
-        .col-md-3.col-xs-12.mycontent-left
+        .col-md-4.col-xs-12.mycontent-left
           %p
             %h4 
-              %a{href: ''} 
+              %a{href: 'http://downapp.com'} 
                 DOWN
                 %br
-                (Formerly Bang With Friends)     
+                %h5(Formerly Bang With Friends)     
           %p
-            Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam. 
-        .col-md-3.col-xs-12.mycontent-left
-          %p
-            %h4
-              %a{href: ''}RadPad
-          %p
-            Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam.
-        .col-md-3.col-xs-12.mycontent-left
+            I built and maintained a Neo4j graph database for a site of over 1.3 million users to help with match discovery and was responsible of maintaining the majority of the Ruby on Rails web server and helped with API design for the version 2.0 launch of the site and mobile apps.
+        .col-md-4.col-xs-12.mycontent-left
           %p
             %h4
-              %a{href: ''}TrackR by Phone Halo
+              %a{href: 'http://onradpad.com'}RadPad
           %p
-            Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam.
-        .col-md-3.col-xs-12
+            Redesigned the backend apartment aggregation service to be almost 3x faster than prior. I also helped to design and implement a realtime messaging service using a Ruby on Rails API and PubSub for landlords and renters.
+        .col-md-4.col-xs-12.mycontent-left
           %p
             %h4
-              %a{href: ''}Dealbase and goSeek
+              %a{href: ''}Resound.fm
           %p
-            Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Aenean eu leo quam.          
+            Cofounded and built a social music sharing platform that was then grown to roughly 1000 users. I help handle duties ranging from all backend engineering, devops, business development, marketing and social media.
+      .divider
+      .row 
+        .col-md-6.col-xs-12.mycontent-left
+          %p
+            %h4
+              %a{href: 'http://thetrackr.com'}TrackR
+          %p
+            Built an Order Management tool so over 15,000 users could manage their preferences for the companies $1.2 million IndieGoGo campaign. I also was responsible for many fixes and improvements to the backend of the main Ruby on Rails site. 
+        .col-md-6.col-xs-12
+          %p
+            %h4
+              %a{href: 'http://goseek.com'}Dealbase (goSeek)
+          %p
+            Managed APIs for communicating between 2 large Ruby on Rails web apps. Worked with caching of large volumes of hotel searches and results over Redis and Memcached, with a Postgresql backing database. Built a full-stack (Javascript with React, Ruby) login authentication system for managing new and legacy users. 
 
 :javascript
-  var items = ['Kyle Grant Lucas','I Like To Code','Music Drives Me','Personal Projects','Work Experience'];
+  var items = ['Kyle Grant Lucas','I Like To Code','Remotes Are Obsolete','Personal Projects', 'Music Drives Me','Work Experience'];

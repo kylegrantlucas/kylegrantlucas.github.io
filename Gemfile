@@ -6,7 +6,7 @@ gem 'jekyll'
 
 gem 'jekyll-assets'
 gem 'sprockets-sass'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '~> 4.6.2'
 gem 'sass'
 gem 'uglifier'
 gem 'compass'

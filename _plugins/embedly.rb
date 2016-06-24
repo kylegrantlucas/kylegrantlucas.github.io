@@ -62,7 +62,7 @@ module Jekyll
 
     def compose(json_rep)
       type     = json_rep['type']
-      provider = json_rep['provider_name'].downcase
+      provider = json_rep['provider_name'].downcase if json_rep['provider_name']
 
       if type == 'photo'
         url    = json_rep['url']

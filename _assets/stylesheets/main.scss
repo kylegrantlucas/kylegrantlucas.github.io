@@ -26,8 +26,8 @@ body {
   .main {
     height: 100%;
     position: relative;
-    margin-bottom:200px;
-    top: 50px;
+    margin-bottom:225px;
+    // top: 50px;
   }
 
   h1 {
@@ -149,7 +149,7 @@ body {
   }
 
   #number_3_main {
-    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), asset-url("thejazi13-3month.jpg", $digest: true) repeat center center fixed;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), asset-url("go.gif", $digest: true) no-repeat center center;
     background-size: 100%;
   }
   @media (max-width: 1000px) and (min-width: 801px) {
@@ -172,11 +172,31 @@ body {
     background-color: $purple;
   }
 
+    #number_5_main {
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), asset-url("thejazi13-3month.jpg", $digest: true) repeat center center fixed;
+    background-size: 100%;
+  }
+  @media (max-width: 1000px) and (min-width: 801px) {
+    #number_5_main {
+      background-size: 150%;
+    }
+  }
+  @media (max-width: 800px) and (min-width: 501px) {
+    #number_5_main {
+      background-size: 200%;
+    }
+  }
+  @media (max-width: 500px) {
+    #number_5_main {
+      background-size: 300%;
+    }
+  }
+
   .subtle-dropshadow {
     @include box-shadow(0 1px 0px rgba(0,0,0,0.25));
   }
 
-  #number_5 {
+  #number_6 {
     background-color: $light-blue;
   }
 

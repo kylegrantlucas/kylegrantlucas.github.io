@@ -1,0 +1,17 @@
+layout: default
+<!DOCTYPE html>
+<div class='main'>
+  <section class='page-block' data-anchor='number_1' id='number_1'>
+    <div class='container-fluid content'>
+      <h1>{{page.title | titleize}}</h1>
+      {% if page.subtitle %}
+      <h3>{{page.subtitle | titleize }}</h3>
+      {% endif %}
+      <div class='divider'></div>
+      <div class='post'>
+        {{content}}
+        {% convert_include disqus.haml %}
+      </div>
+    </div>
+  </section>
+</div>
