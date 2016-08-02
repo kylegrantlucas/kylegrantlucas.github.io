@@ -2,7 +2,7 @@ require 'rubygems'
 require 'net/https'
 require 'uri'
 require 'json'
-require 'domainatrix'
+require 'domainator'
 
 module Jekyll
   class Embedly < Liquid::Tag
@@ -38,7 +38,7 @@ module Jekyll
     private
 
     def embed(url)
-      provider     = Domainatrix.parse(url).domain
+      provider     = Domainator.parse(url).domain
       param_string = ""
       params       = (@config[provider] or {}).merge @parameters
 

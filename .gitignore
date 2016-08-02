@@ -1,5 +1,6 @@
 # Created by https://www.gitignore.io
-
+*.html
+.asset-cache/*
 config/*
 Deploy.pem
 .vscode

@@ -208,7 +208,7 @@ body {
   }
 
   #number_3_main {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), asset-url("go.gif", $digest: true) no-repeat center center;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), asset-url("go.gif") no-repeat center center;
     background-size: 100%;
   }
   @media (max-width: 1000px) and (min-width: 801px) {
@@ -232,7 +232,7 @@ body {
   }
 
     #number_5_main {
-    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), asset-url("thejazi13-3month.jpg", $digest: true) repeat center center fixed;
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), asset-url("thejazi13-3month.jpg") repeat center center fixed;
     background-size: 100%;
   }
   @media (max-width: 1000px) and (min-width: 801px) {
