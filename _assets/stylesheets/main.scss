@@ -21,22 +21,35 @@ $green: #39553E;
 @import "footer";
 @import "post";
 
-$break-small: 320px;
-$break-medium: 675px;
-$break-large: 1024px;
+// Setup Meida Queries
+$break-iphone-SE-min: 320px;
+$break-iphone-SE-max: 568px;
+$break-iphone-6-min: 370px;
+$break-iphone-6-max: 675px;
+$break-iphone-6plus-min: 414px;
+$break-iphone-6plus-max: 736px;
+$break-ipad-min: 768px;
+$break-ipad-max: 1024px;
 
 @mixin respond-to($media) {
-  @if $media == handhelds {
-    @media only screen and (max-width: $break-small) { @content; }
+  @if $media == iphoneSE {
+    @media only screen and (min-width: $break-iphone-SE-min) and (max-width: $break-iphone-SE-max) { @content; }
   }
-  @else if $media == medium-screens {
-    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  @else if $media == iphone6 {
+    @media only screen and (min-width: $break-iphone-6-min) and (max--width: $break-iphone-6-max) { @content; }
   }
-  @else if $media == wide-screens {
-    @media only screen and (min-width: $break-large) { @content; }
+  @else if $media == iphone6plus {
+    @media only screen and (min-width: $break-iphone-6plus-min) and (max-width: $break-iphone-6plus-max) { @content; }
+  }
+  @if $media == iphones {
+    @media only screen and (min-width: $break-iphone-SE-min) and (max-width: $break-iphone-6plus-max) { @content; }
+  }
+  @else if $media == ipad {
+    @media only screen and (min-width: $break-ipad-min) and (max-width: $break-ipad-max) { @content; }
   }
 }
 
+// Start Main CSS Body
 body {
   background: linear-gradient(0deg, $dark-blue 70%, $light-blue 30%);
   background-attachment: fixed;
@@ -45,65 +58,42 @@ body {
     height: 100%;
     position: relative;
     margin-bottom:225px;
-    // top: 50px;
   }
 
   h1 {
+    font-family: $font-style;
+    font-size: 90px;
+    line-height: 1.125;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    letter-spacing: -3px;
+    @include respond-to(iphoneSE) { 
+      font-size: 34px;
+      letter-spacing: -1px;
+    }
+    @include respond-to(iphone6) {
+      font-size: 36px;
+      letter-spacing: -1px;
+    }
+    @include respond-to(iphone6plus) {
+      font-size: 36px;
+      letter-spacing: -1px;
+    }
+    @include respond-to(ipad) { font-size: 80px; }
+  }
+
+  h2 {
     font-family: $font-style;
     font-size: 60px;
     line-height: 1.125;
     margin-bottom: 10px;
     margin-top: 10px;
     letter-spacing: -3px;
-  }
-  @media (max-width: 300px) {
-    h1 {
-      font-size: 34px;
-      letter-spacing: -1px;
-    }
-  }
-  @media (max-width: 500px) {
-    h1 {
-      font-size: 36px;
-      letter-spacing: -1px;
-    }
-  }
-  @media (min-width: 800px) {
-    h1 {
-      font-size: 90px;
-    }
-  }
-
-  h2 {
-    font-family: $font-style;
-    font-size: 50px;
-    line-height: 1.125;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    letter-spacing: -3px;
-  }
-  @media (max-width: 300px) {
-    h2 {
+    @include respond-to(iphones) {
       font-size: 24px;
       letter-spacing: -1px;
-      .my-name {
-        font-size: 38px;
-      }
     }
-  }
-  @media (max-width: 500px) {
-    h2 {
-      font-size: 26px;
-      letter-spacing: -1px;
-    }
-  }
-  @media (min-width: 800px) {
-    h2 {
-      font-size: 60px;
-      .my-name {
-        font-size: 80px;
-      }
-    }
+    @include respond-to(ipad) { font-size: 50px; }
   }
 
   h3 {
@@ -114,10 +104,16 @@ body {
     line-height: 0.85;
     margin-top: 15px;
     margin-bottom: 15px;
-  }
-  @media (max-width: 500px) {
-    h3 {
+    @include respond-to(iphoneSE) {
       font-size: 20px;
+      letter-spacing: -1px;
+    }
+    @include respond-to(iphone6) {
+      font-size: 20px;
+      letter-spacing: -1px;
+    }
+    @include respond-to(iphone6plus) {
+      font-size: 24px;
       letter-spacing: -1px;
     }
   }
@@ -138,9 +134,7 @@ body {
     a:hover {
       color: $orange
     }
-  }
-  @media (max-width: 500px) {
-    h4 {
+    @include respond-to(iphones) {
       font-size: 26px;
       letter-spacing: -1px;
     }
@@ -166,18 +160,14 @@ body {
     line-height: 28px;
     font-family: $font-style;
     a {
-        color: $orange;
-        text-decoration: none;
-      }
-      a:hover {
-        color: $orange;
-        text-decoration: underline;
-      }
-  }
-  @media (max-width: 500px) {
-    p {
-      font-size: 16px;
+      color: $orange;
+      text-decoration: none;
     }
+    a:hover {
+      color: $orange;
+      text-decoration: underline;
+    }
+    @include respond-to(iphones) { font-size: 16px; }
   }
 
   .fa {
@@ -249,9 +239,10 @@ body {
     background-color: $purple;
   }
 
-    #number_5_main {
+  #number_5_main {
     background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), asset-url("thejazi13-3month.jpg") repeat center center fixed;
     background-size: 100%;
+    @include respond-to(iphones) { background-size: 300%; }
   }
   @media (max-width: 1000px) and (min-width: 801px) {
     #number_5_main {
@@ -261,11 +252,6 @@ body {
   @media (max-width: 800px) and (min-width: 501px) {
     #number_5_main {
       background-size: 200%;
-    }
-  }
-  @media (max-width: 500px) {
-    #number_5_main {
-      background-size: 300%;
     }
   }
 
@@ -280,8 +266,6 @@ body {
   #pages {
     background-color: $light-blue;
   }
-
- 
 
   #customPaginator {
     margin-left: auto;
@@ -320,7 +304,6 @@ body {
   }
 
   .col-xs-12 {
-    // margin-top: 30px;
     h4 {
       a {
         color: $orange;
@@ -333,7 +316,6 @@ body {
   }
 
   .col-md-6 {
-    // margin-top: 30px;
     h4 {
       a {
         color: $orange;
@@ -346,7 +328,6 @@ body {
   }
 
   .col-md-3 {
-    // margin-top: 30px;
     h4 {
       font-size: 24px;
       line-height: 30px;
@@ -364,21 +345,17 @@ body {
     }
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: $break-ipad-min) {
     .pagination ul {
       display: inline-block;
     }
-
-
     .pagination>ul {
       height: 100%;
       padding: 0px;
     }
-
     .pagination li.next {
       position: relative;
     }
-
     .pagination li.previous {
       position: relative;
     }
