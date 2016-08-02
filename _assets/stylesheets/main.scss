@@ -40,19 +40,51 @@ body {
   }
   @media (max-width: 300px) {
     h1 {
-      font-size: 38px;
-      letter-spacing: -2px;
+      font-size: 34px;
+      letter-spacing: -1px;
     }
   }
   @media (max-width: 500px) {
     h1 {
-      font-size: 40px;
-      letter-spacing: -2px;
+      font-size: 36px;
+      letter-spacing: -1px;
     }
   }
   @media (min-width: 800px) {
     h1 {
-      font-size: 80px;
+      font-size: 90px;
+    }
+  }
+
+  h2 {
+    font-family: $font-style;
+    font-size: 50px;
+    line-height: 1.125;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    letter-spacing: -3px;
+  }
+  @media (max-width: 300px) {
+    h2 {
+      font-size: 24px;
+      letter-spacing: -1px;
+      .my-name {
+        font-size: 38px;
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    h2 {
+      font-size: 26px;
+      letter-spacing: -1px;
+    }
+  }
+  @media (min-width: 800px) {
+    h2 {
+      font-size: 60px;
+      .my-name {
+        font-size: 80px;
+      }
     }
   }
 
@@ -67,7 +99,7 @@ body {
   }
   @media (max-width: 500px) {
     h3 {
-      font-size: 16px;
+      font-size: 20px;
       letter-spacing: -1px;
     }
   }
@@ -87,6 +119,12 @@ body {
     }
     a:hover {
       color: $orange
+    }
+  }
+  @media (max-width: 500px) {
+    h4 {
+      font-size: 26px;
+      letter-spacing: -1px;
     }
   }
 
@@ -118,6 +156,27 @@ body {
         text-decoration: underline;
       }
   }
+  @media (max-width: 500px) {
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .fa {
+      font-size: 60px;
+      display:block;
+      text-align:center;
+      margin-bottom: 15px;
+      
+  }
+  @media (max-width: 500px) {
+    .fa {
+      font-size: 40px;
+    }
+  }
+  .fa-github-alt {
+        display:inline;
+      }
 
   .divider {
     border-bottom: 2px solid rgba(0, 0, 0, 0.3);
@@ -159,12 +218,12 @@ body {
   }
   @media (max-width: 800px) and (min-width: 501px) {
     #number_3_main {
-      background-size: 200%;
+      background-size: 250%;
     }
   }
   @media (max-width: 500px) {
     #number_3_main {
-      background-size: 300%;
+      background-size: 350%;
     }
   }
 
@@ -204,6 +263,8 @@ body {
     background-color: $light-blue;
   }
 
+ 
+
   #customPaginator {
     margin-left: auto;
     margin-right: auto;
@@ -241,13 +302,7 @@ body {
   }
 
   .col-xs-12 {
-    margin-top: 30px;
-    i {
-      font-size: 60px;
-      display:block;
-      text-align:center;
-      margin-bottom: 15px;
-    }
+    // margin-top: 30px;
     h4 {
       a {
         color: $orange;
@@ -260,13 +315,7 @@ body {
   }
 
   .col-md-6 {
-    margin-top: 30px;
-    i {
-      font-size: 60px;
-      display:block;
-      text-align:center;
-      margin-bottom: 15px;
-    }
+    // margin-top: 30px;
     h4 {
       a {
         color: $orange;
@@ -279,13 +328,7 @@ body {
   }
 
   .col-md-3 {
-    margin-top: 30px;
-    i {
-      font-size: 60px;
-      display:block;
-      text-align:center;
-      margin-bottom: 15px;
-    }
+    // margin-top: 30px;
     h4 {
       font-size: 24px;
       line-height: 30px;
