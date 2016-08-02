@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 gem 'rake', '11.2.2'
 gem 'haml', '4.0.7'
 gem 'jekyll', '3.2.0'
+gem 'sprockets', '3.6.0'
 
 gem 'jekyll-assets', '2.1.2'
 gem 'font-awesome-sass', '~> 4.6.2'
@@ -14,6 +15,7 @@ gem 'domainator', '2.0.0'
 gem 'redcarpet', '3.3.4'
 gem "autoprefixer-rails", '6.3.7'
 gem "sprockets-es6", '0.9.1'
+gem "bootstrap-sass", '3.3.7'
 
 group :jekyll_plugins do
   gem 'jekyll-sitemap', '0.11.0'
