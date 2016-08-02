@@ -12,6 +12,7 @@ footer {
 
   img {
     width: 50px;
+    margin-bottom: 10px;
   }
   img:hover {
     cursor: pointer;
@@ -19,6 +20,10 @@ footer {
 }
 
 .footer-text {
-  line-height: 12px;
-  font-size: 14px; 
+  line-height: 14px;
+  font-size: 14px;
+  @include respond-to(iphones) { 
+    line-height: 16px;
+    font-size: 16px;
+  } 
 }

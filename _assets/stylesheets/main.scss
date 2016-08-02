@@ -14,14 +14,6 @@ $light-blue: #27586B;
 $dark-blue: #113F51;
 $red: #AA4D39;
 $green: #39553E;
-
-// Import Partials (dependent on above declarations)
-@import "side_nav";
-@import "header";
-@import "footer";
-@import "post";
-
-// Setup Meida Queries
 $break-iphone-SE-min: 320px;
 $break-iphone-SE-max: 568px;
 $break-iphone-6-min: 370px;
@@ -31,12 +23,13 @@ $break-iphone-6plus-max: 736px;
 $break-ipad-min: 768px;
 $break-ipad-max: 1024px;
 
+// Setup Meida Queries
 @mixin respond-to($media) {
   @if $media == iphoneSE {
     @media only screen and (min-width: $break-iphone-SE-min) and (max-width: $break-iphone-SE-max) { @content; }
   }
   @else if $media == iphone6 {
-    @media only screen and (min-width: $break-iphone-6-min) and (max--width: $break-iphone-6-max) { @content; }
+    @media only screen and (min-width: $break-iphone-6-min) and (max-width: $break-iphone-6-max) { @content; }
   }
   @else if $media == iphone6plus {
     @media only screen and (min-width: $break-iphone-6plus-min) and (max-width: $break-iphone-6plus-max) { @content; }
@@ -44,10 +37,28 @@ $break-ipad-max: 1024px;
   @if $media == iphones {
     @media only screen and (min-width: $break-iphone-SE-min) and (max-width: $break-iphone-6plus-max) { @content; }
   }
+  @if $media == smalliphones {
+    @media only screen and (min-width: $break-iphone-SE-min) and (max-width: $break-iphone-6-max) { @content; }
+  }
+  @if $media == largeiphones {
+    @media only screen and (min-width: $break-iphone-6-min) and (max-width: $break-iphone-6plus-max) { @content; }
+  }
   @else if $media == ipad {
     @media only screen and (min-width: $break-ipad-min) and (max-width: $break-ipad-max) { @content; }
   }
+  @else if $media == ipadsprepro {
+    @media only screen and (min-width: $break-ipad-min) and (max-width: 1000px) { @content; }
+  }
+  @else if $media == desktop {
+    @media only screen and (min-width: $break-ipad-max + 1) { @content; }
+  }
 }
+
+// Import Partials (dependent on above declarations)
+@import "side_nav";
+@import "header";
+@import "footer";
+@import "post";
 
 // Start Main CSS Body
 body {
@@ -58,6 +69,9 @@ body {
     height: 100%;
     position: relative;
     margin-bottom:225px;
+    @include respond-to(iphoneSE) { margin-bottom:275px;}
+    @include respond-to(iphone6) { margin-bottom:265px; }
+    @include respond-to(iphone6plus) { margin-bottom:265px; } 
   }
 
   h1 {
@@ -68,18 +82,18 @@ body {
     margin-top: 10px;
     letter-spacing: -3px;
     @include respond-to(iphoneSE) { 
-      font-size: 34px;
+      font-size: 32px;
       letter-spacing: -1px;
     }
     @include respond-to(iphone6) {
-      font-size: 36px;
+      font-size: 37px;
       letter-spacing: -1px;
     }
     @include respond-to(iphone6plus) {
-      font-size: 36px;
+      font-size: 41px;
       letter-spacing: -1px;
     }
-    @include respond-to(ipad) { font-size: 80px; }
+    @include respond-to(ipad) { font-size: 79px; }
   }
 
   h2 {
@@ -104,17 +118,15 @@ body {
     line-height: 0.85;
     margin-top: 15px;
     margin-bottom: 15px;
-    @include respond-to(iphoneSE) {
+    @include respond-to(smalliphones) {
       font-size: 20px;
       letter-spacing: -1px;
-    }
-    @include respond-to(iphone6) {
-      font-size: 20px;
-      letter-spacing: -1px;
+      line-height: 20px;
     }
     @include respond-to(iphone6plus) {
       font-size: 24px;
       letter-spacing: -1px;
+      line-height: 24px;
     }
   }
 
@@ -136,6 +148,7 @@ body {
     }
     @include respond-to(iphones) {
       font-size: 26px;
+      line-height: 34px;
       letter-spacing: -1px;
     }
   }
@@ -167,28 +180,40 @@ body {
       color: $orange;
       text-decoration: underline;
     }
-    @include respond-to(iphones) { font-size: 16px; }
+    @include respond-to(iphones) { font-size: 18px; }
   }
 
   .fa {
-      font-size: 60px;
-      display:block;
-      text-align:center;
-      margin-bottom: 15px;
-      
-  }
-  @media (max-width: 500px) {
-    .fa {
-      font-size: 40px;
-    }
+    font-size: 60px;
+    display:block;
+    text-align:center;
+    margin-bottom: 15px;   
+    @include respond-to(iphones) { font-size: 40px; margin-top: 20px;  }
+    @include respond-to(ipad) { margin-top: 20px;  }
   }
   .fa-github-alt {
-        display:inline;
-      }
+    display:inline;
+  }
 
   .divider {
     border-bottom: 2px solid rgba(0, 0, 0, 0.3);
     margin-bottom: 15px;
+  }
+
+  .content-divider {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+    margin-bottom: 15px;
+    margin-top: 15px;
+    @include respond-to(iphones) { 
+      border-bottom: 0px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+    @include respond-to(ipadsprepro) { 
+      border-bottom: 0px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
   }
 
   .page-block {
@@ -218,21 +243,9 @@ body {
   #number_3_main {
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), asset-url("go.gif") no-repeat center center;
     background-size: 100%;
-  }
-  @media (max-width: 1000px) and (min-width: 801px) {
-    #number_3_main {
-      background-size: 150%;
-    }
-  }
-  @media (max-width: 800px) and (min-width: 501px) {
-    #number_3_main {
-      background-size: 250%;
-    }
-  }
-  @media (max-width: 500px) {
-    #number_3_main {
-      background-size: 350%;
-    }
+    @include respond-to(iphoneSE) { background-size: 450%; }
+    @include respond-to(largeiphones) { background-size: 350%; }
+    @include respond-to(ipad) { background-size: 250%; }
   }
 
   #number_4 {
@@ -243,16 +256,7 @@ body {
     background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), asset-url("thejazi13-3month.jpg") repeat center center fixed;
     background-size: 100%;
     @include respond-to(iphones) { background-size: 300%; }
-  }
-  @media (max-width: 1000px) and (min-width: 801px) {
-    #number_5_main {
-      background-size: 150%;
-    }
-  }
-  @media (max-width: 800px) and (min-width: 501px) {
-    #number_5_main {
-      background-size: 200%;
-    }
+    @include respond-to(ipad) { background-size: 200%; }
   }
 
   .subtle-dropshadow {
@@ -296,10 +300,18 @@ body {
   .mycontent-left {
     border-right: 1px solid #333;
   }
-  @media (max-width: 992px) {
+  @media (max-width: 800px) {
     .mycontent-left {
       border-right: 0px;
       border-bottom: 1px solid #333;
+    }
+    .mycontent {
+      border-right: 0px;
+      border-bottom: 1px solid #333;
+    }
+    .mycontent-last {
+      border-right: 0px;
+      border-bottom: 0px;
     }
   }
 
@@ -361,4 +373,3 @@ body {
     }
   }
 }
-
