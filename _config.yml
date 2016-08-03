@@ -13,7 +13,7 @@ avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/je
 
 paginate: 5
 paginate_path: "/blog/page:num/"
-url: http://kylelucas.me
+url: http://kylelucas.io
 #
 # Flags below are optional
 #
@@ -24,7 +24,6 @@ footer-links:
   github: kylegrantlucas
   instagram: kylegrantlucas
   linkedin: kylegrantlucas
-  rss: blah# just type anything here for a working RSS icon, make sure you set the "url" above!
   twitter: kylegrantlucas
   lastfm: thejazi13
 
@@ -70,12 +69,6 @@ exclude:
     - Gemfile.lock
     - LICENSE
     - README.md
-
-assets:
-  css_compressor: sass
-  js_compressor: uglifier
-
-
 
 embedly:
   api_key: a4d9a793fee74c09984a512b5d204516
