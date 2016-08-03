@@ -54,12 +54,6 @@ $break-ipad-max: 1024px;
   }
 }
 
-// Import Partials (dependent on above declarations)
-@import "side_nav";
-@import "header";
-@import "footer";
-@import "post";
-
 // Start Main CSS Body
 body {
   background: linear-gradient(0deg, $dark-blue 70%, $light-blue 30%);
@@ -173,8 +167,8 @@ body {
     line-height: 28px;
     font-family: $font-style;
     a {
-      color: $orange;
-      text-decoration: none;
+      color: #fff;
+      text-decoration: underline;
     }
     a:hover {
       color: $orange;
@@ -204,12 +198,9 @@ body {
     border-bottom: 2px solid rgba(0, 0, 0, 0.3);
     margin-bottom: 15px;
     margin-top: 15px;
-    @include respond-to(iphones) { 
-      border-bottom: 0px;
-      margin-bottom: 0px;
-      margin-top: 0px;
-    }
-    @include respond-to(ipadsprepro) { 
+  }
+  @media (max-width: 991px) {
+    .content-divider {
       border-bottom: 0px;
       margin-bottom: 0px;
       margin-top: 0px;
@@ -243,9 +234,9 @@ body {
   #number_3_main {
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), asset-url("go.gif") no-repeat center center;
     background-size: 100%;
-    @include respond-to(iphoneSE) { background-size: 450%; }
-    @include respond-to(largeiphones) { background-size: 350%; }
-    @include respond-to(ipad) { background-size: 250%; }
+    @include respond-to(iphoneSE) { background-size: 800%; }
+    @include respond-to(largeiphones) { background-size: 600%; }
+    @include respond-to(ipad) { background-size: 500%; }
   }
 
   #number_4 {
@@ -300,7 +291,7 @@ body {
   .mycontent-left {
     border-right: 1px solid #333;
   }
-  @media (max-width: 800px) {
+  @media (max-width: 991px) {
     .mycontent-left {
       border-right: 0px;
       border-bottom: 1px solid #333;
@@ -373,3 +364,9 @@ body {
     }
   }
 }
+
+// Import Partials (dependent on above declarations)
+@import "side_nav";
+@import "header";
+@import "footer";
+@import "post";

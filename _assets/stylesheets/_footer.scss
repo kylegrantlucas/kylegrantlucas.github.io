@@ -1,15 +1,14 @@
 @import "svg-icons";
 
 footer {
-  background-color: $dark-blue;
   position:fixed;
   bottom:0;
   left:0;
   width:100%;
+  
   // height:225px;
   z-index:-1;
   text-align: center;
-
   img {
     width: 50px;
     height: 50px;
@@ -18,13 +17,19 @@ footer {
   img:hover {
     cursor: pointer;
   }
-}
 
-.footer-text {
-  line-height: 14px;
-  font-size: 14px;
-  @include respond-to(iphones) { 
-    line-height: 16px;
-    font-size: 16px;
-  } 
+  .svg-icons {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .footer-text {
+    line-height: 14px;
+    font-size: 14px;
+    @include respond-to(iphones) { 
+      line-height: 16px;
+      font-size: 16px;
+    } 
+  }
 }

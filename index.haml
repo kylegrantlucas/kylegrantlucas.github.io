@@ -21,13 +21,33 @@ title: Kyle Lucas
       %h3 (Seriously)
       .divider
       %p 
-        Intro Paragraph
+        The way we live and interact with our environment is fundamentally changing at a rapid pace, in the next 5 years voice assistants will only grow in power and more devices than ever will be connected, and in the next 10 who knows what things will even look like. This fascinates me so much that I spend most of my free time working and hacking on new ways to have products communicate interact and work with each other to make every day that much smoother for me. 
       %p 
-        Most recently, I built a framework using Ruby (and more specifically Sinatra) to interact with Amazon's Alexa API called SingingAssistant. 
-        Using the framework you can build small, modular plugins that allow for cool interaction with Amazon's Alexa devices.
+        Most recently, I built a gems and framework using Ruby (and more specifically
+        = succeed ") " do  
+          %a{href: "http://www.sinatrarb.com"} Sinatra
+        to interact with 
+        = succeed " " do  
+          %a{href: "https://developer.amazon.com/alexa"} Amazon's Alexa API
+        called SingingAssistant. 
+        Using the framework you can build small, modular plugins in Ruby that allow for cool interaction with Amazon's Alexa devices.
       %p  
-        Examples of this that I have built include controling your Phillips Hue lights with more granular control than Amazon provides,
-        queueing  up movies to download with CouchPotato, checking the status of your downloads in Transmission, and even getting you latest Halo 5 statistics!
+        Examples of this that I have built include controling your
+        = succeed " " do  
+          %a{href: "http://www2.meethue.com"} Phillips Hue
+        lights with more granular control than Amazon provides, queueing  up movies to download with 
+        = succeed "," do  
+          %a{href: "https://couchpota.to"} Couchpotato
+        checking the status of your downloads in
+        = succeed "," do  
+          %a{href: "https://www.transmissionbt.com"} Transmission
+        managing TV shows with
+        = succeed "," do  
+          %a{href: "http://sickbeard.com"} SickBeard
+        and even getting you latest
+        = succeed " " do  
+          %a{href: "https://developer.haloapi.com"} Halo 5
+        statistics!
   %section#number_4.page-block{"data-anchor" => "4"}
     .container-fluid.content
       %h2 Personal Projects
@@ -39,14 +59,32 @@ title: Kyle Lucas
             %h4
               %a{href: 'http://github.com/kylegrantlucas/Takeout'}Takeout
           %p
-            A Ruby gem I built that flexes the power of metaprogramming in Ruby to create quick easy-to-use API wrappers for services. Can be used with any basic REST HTTP services to perform actions with the server and parse responses.
+            Ruby gem that flexes the power of metaprogramming to create quick easy-to-use API wrappers for services. Can be used with any basic REST HTTP services to perform actions with the server and parse responses.
         .col-md-6.col-xs-12.mycontent
           %i.fa.fa-microphone#project-icon
           %p
             %h4
               %a{href: 'http://github.com/kylegrantlucas/SingingAssistant'}SingingAssistant 
           %p
-            A Ruby (Sinatra) based server project for running plugins to talk with Amazon Alexa products and services. Makes heavy use of metaprogramming to make plugin creation as easy and 'drop-in' as possible. Plugins so far include support for Phillips Hue, CouchPotato, SickBeard, Transmission and Halo 5.
+            Ruby
+            = succeed " " do  
+              %a{href: "http://www.sinatrarb.com"} (Sinatra)
+            based server project for running plugins to talk with Amazon Alexa products and services. Makes heavy use of metaprogramming to make plugin creation as easy and 'drop-in' as possible. 
+            Automation scripts manage the deployment of the Javascript router to
+            = succeed "." do  
+              %a{href: "https://aws.amazon.com/lambda/"} AWS Lambda
+            Plugins so far include support for 
+            = succeed ", " do  
+              %a{href: "http://www2.meethue.com"} Philips Hue
+            = succeed ", " do  
+              %a{href: "https://couchpota.to"} Couchpotato
+            = succeed ", " do  
+              %a{href: "http://sickbeard.com"} SickBeard
+            = succeed " " do  
+              %a{href: "https://www.transmissionbt.com"} Transmission 
+            and
+            = succeed "." do  
+              %a{href: "https://developer.haloapi.com"} Halo 5
       .content-divider              
       .row
         .col-md-6.col-xs-12.mycontent-left
@@ -55,14 +93,34 @@ title: Kyle Lucas
             %h4
               %a{href: 'http://github.com/kylegrantlucas/Readit'}Readit
           %p
-            Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.
+            Proof of concept universal desktop app built on 
+            = succeed " " do  
+              %a{href: "https://nodejs.org/en/"} NodeJS
+            using
+            = succeed " " do  
+              %a{href: "http://electron.atom.io"} Electron
+            and various pieces of modern Javascript development including
+            = succeed ", " do  
+              %a{href: "https://github.com/lukehoban/es6features"} EcmaScript 6
+            = succeed ", " do  
+              %a{href: "https://facebook.github.io/react/"} React
+            = succeed ", " do  
+              %a{href: "http://redux.js.org"} Redux
+            = succeed ", " do  
+              %a{href: "https://webpack.github.io"} WebPack
+            to load the basic functions (feed, content and comments) of
+            = succeed "." do  
+              %a{href: "https://www.reddit.com/dev/api/"} Reddit
         .col-md-6.col-xs-12.mycontent-last
           %i.fa.fa-bar-chart#project-icon
           %p
             %h4
               %a{href: 'http://github.com/kylegrantlucas/halo_stats'}Halo Stats
           %p
-            A Ruby gem I built for interacting with the Halo 5 API provided by 343 Industries. The gem is built on my other project Takeout for quick and easy addition and modification of endpoints as 343 changes and improves them.
+            Ruby gem for interacting with the
+            = succeed " " do  
+              %a{href: "https://developer.haloapi.com"} Halo 5 API
+            provided by 343 Industries. Has full support for all APIs (August 2016). Takes simples calls and returns fully parsed Ruby objects for working with. The gem is built on my other project Takeout for quick and easy addition and modification of endpoints as 343 changes and improves them.
   %section#number_5_main.page-block{"data-anchor" => "5"}
     .container-fluid.content
       %h2 Passion Drives Me
@@ -73,10 +131,7 @@ title: Kyle Lucas
       %p 
         Music fuels me so much in fact that I founded a startup completely oriented around disovering and sharing music with your friends,
         = succeed "." do  
-          %a{href: "https://github.com/kylegrantlucas/resound.fm"} Resound.fm
-      %p 
-        My other lifetime passion has always been automation, since I was little i've been rigging up way to have tasks completed for me with minimal input. 
-        Only recently though has the technology developed to the point (and my budget grown enough) to develop some truly cool home automation experiences.     
+          %a{href: "https://github.com/kylegrantlucas/resound.fm"} Resound.fm    
   %section#number_6.page-block{"data-anchor" => "6"}
     .container-fluid.content
       %h2 Work Experience
@@ -90,19 +145,28 @@ title: Kyle Lucas
                 %br
                 %h5(Formerly Bang With Friends)     
           %p
-            I built and maintained a Neo4j graph database for a site of over 1.3 million users to help with match discovery and was responsible of maintaining the majority of the Ruby on Rails web server and helped with API design for the version 2.0 launch of the site and mobile apps.
+            Built and maintained a 
+            = succeed " " do  
+              %a{href: "https://neo4j.com"} Neo4j
+            graph database for a site of over 1.3 million users to help with match discovery. Was also responsible for building version 2.0 of the API and matching services from scratch, maintaining the Rails application, optimizing the
+            = succeed " " do  
+              %a{href: "https://www.postgresql.org"} PostgreSQL
+            and
+            = succeed " " do  
+              %a{href: "https://neo4j.com"} Neo4j
+            databases and web servers, and interacting with and managing tasks for contractors.
         .col-md-4.col-xs-12.mycontent-left
           %p
             %h4
               %a{href: 'http://onradpad.com'}RadPad
           %p
-            Redesigned the backend apartment aggregation service to be almost 3x faster than prior. I also helped to design and implement a realtime messaging service using a Ruby on Rails API and PubSub for landlords and renters.
+            Redesigned the backend apartment aggregation service to be almost 3 times faster than prior by using various means of refactoring and parallelization of tasks. Implemented the groundwork for testing the full Rails application and also helped to design and implement a realtime messaging service using a Rails API and PubSub for landlords and renters.
         .col-md-4.col-xs-12.mycontent
           %p
             %h4
               %a{href: 'https://github.com/kylegrantlucas/resound.fm'}Resound.fm
           %p
-            Cofounded and built a social music sharing platform that was then grown to roughly 1000 users. I help handle duties ranging from all backend engineering, devops, business development, marketing and social media.
+            Cofounded and built a social music sharing platform on Rails that was then grown to roughly 1000 users as the only backend engineer. Handled duties ranging from designing and implementing data models, building APIs, implementing caching mechanisms, designing databases, and managing DevOps including deployment and infrastructure on Rackspace, business development, marketing and social media.
       .content-divider
       .row 
         .col-md-6.col-xs-12.mycontent-left
@@ -110,13 +174,32 @@ title: Kyle Lucas
             %h4
               %a{href: 'http://thetrackr.com'}TrackR
           %p
-            Built an Order Management tool so over 15,000 users could manage their preferences for the companies $1.2 million IndieGoGo campaign. I also was responsible for many fixes and improvements to the backend of the main Ruby on Rails site. 
+            Built an Order Management tool in Rails and Javascript so over 15,000 users could manage their preferences for the company's
+            = succeed ", " do  
+              %a{href: "https://www.indiegogo.com/projects/trackr-bravo-the-thinnest-tracking-device-ever--2#/"} $1.7 million IndieGoGo campaign
+            also built corresponding administrator tools for the management of users and exporting of data to send to manufacturers for order placement. Hand built a blogging platform in scratch for the main Rails site. Was responsible for many fixes and improvements to the backend of the main Rails site. Managed deployment and infrastructure on
+            = succeed "." do  
+              %a{href: "https://www.heroku.com"} Heroku
         .col-md-6.col-xs-12.mycontent-last
           %p
             %h4
               %a{href: 'http://goseek.com'}Dealbase (goSeek)
           %p
-            Managed APIs for communicating between 2 large Ruby on Rails web apps. Worked with caching of large volumes of hotel searches and results over Redis and Memcached, with a Postgresql backing database. Built a full-stack (Javascript with React, Ruby) login authentication system for managing new and legacy users. 
+            Built and managed APIs for communicating large amounts of Hotel Deals data between 2 large Rails web apps. Worked with caching large volumes of hotel searches and results over
+            = succeed " " do  
+              %a{href: "http://redis.io"} Redis
+            and
+            = succeed ", " do  
+              %a{href: "https://memcached.org"} Memcached
+            with a
+            = succeed " " do  
+              %a{href: "https://www.postgresql.org"} PostgreSQL
+            backing database. Built a full-stack (Javascript with
+            = succeed ", " do  
+              %a{href: "https://facebook.github.io/react/"} React
+            Ruby) login authentication system for managing new and legacy users. Managed the processing of large amounts of third party data via SOAP and REST APIs. Utilized Ruby metaprogramming to design and implement generic interfaces for receiving hotel data from multiple sources. Built a data model and API for using hotel data from multiple sources to book hotel stays through a 3rd party API. Managed deployment and infrastructure on
+            = succeed "." do  
+              %a{href: "https://aws.amazon.com"} Amazon Web Services (AWS)
 
 :javascript
   var items = ['Kyle Grant Lucas','I Like To Code','Remotes Are Obsolete','Personal Projects', 'Music Drives Me','Work Experience'];
