@@ -237,7 +237,7 @@ body {
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), asset-url("go.gif") no-repeat center center;
     background-size: 100%;
     @include respond-to(iphoneSE) { background-size: 800%; }
-    @include respond-to(largeiphones) { background-size: 600%; }
+    @include respond-to(largeiphones) { background-size: 650%; }
     @include respond-to(ipad) { background-size: 500%; }
   }
 
