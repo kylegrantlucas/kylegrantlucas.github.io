@@ -16,11 +16,25 @@ class App extends Component {
   public render() {
     return (
       <div className="App">
-        <Terminal extensions={extensions} history={history} structure={structure} prefix={prefix} theme={theme}/>
+        <Terminal extensions={extensions} history={history} structure={structure} prefix={prefix} theme={theme} styles={styles}/>
       </div>
     );
   }
 }
+
+const styles = {
+  ReactBash: {
+    borderRadius: '5px',
+    display: 'flex',
+    flexDirection: 'column',
+    fontFamily: '\'Fira Code\', monospace',
+    fontSize: '12px',
+    fontWeight: '400',
+    height: '100%',
+    overflow: 'hidden',
+    textAlign: 'left',
+  }
+};
 
 const theme = 'solarized'
 const prefix = 'kyle@kylelucas.io';
