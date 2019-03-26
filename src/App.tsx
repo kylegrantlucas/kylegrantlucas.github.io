@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Terminal from 'react-fish';
 import renderHTML from 'react-render-html';
 import './App.css';
+
 // import { strictEqual } from 'assert';
 
 export const clear = {
@@ -44,7 +45,7 @@ const history = [
 
 const structure = {
   "CREDITS.md": { content: 'First thanks to /u/Flurokazoo and the awesome <a href="http://background.jasperdekroon.nl">Last.FM collage generator</a>' },
-  'README.md': { content: '# Kyle Lucas' },
+  'README.md': { content: '# Kyle Lucas<br><br># Find Me Elsewhere<br><br><i class="fab fa-github-alt"></i> <a href="https://github.com/kylegrantlucas">GitHub</a><br><i class="fab fa-lastfm-square"></i> <a href="https://last.fm/user/thejazi13">Last.fm</a><br><i class="fab fa-twitter-square"></i> <a href="https://twitter.com/kylegrantlucas">Twitter</a><br>' },
   projects: {
     // c: {
     //   sugarkorn: {
