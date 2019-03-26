@@ -7946,10 +7946,6 @@ react-app-polyfill@^0.2.2:
     raf "3.4.1"
     whatwg-fetch "3.0.0"
 
-"react-bash@https://github.com/kylegrantlucas/react-bash.git":
-  version "1.6.0"
-  resolved "https://github.com/kylegrantlucas/react-bash.git#7c8401202d2a6427e32725ac20bf0500c3b1a4b7"
-
 react-dev-utils@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-8.0.0.tgz#7c5b227a45a32ea8ff7fbc318f336cf9e2c6e34c"
