@@ -23,6 +23,7 @@ Icon
 
 # Node
 node_modules/
+yarn-error.log
 
 # Thumbnails
 ._*
