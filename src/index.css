@@ -16,3 +16,7 @@ a:link {
 a:hover {
   color: blue;
 }
+
+input {
+  outline: none;
+}
