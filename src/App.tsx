@@ -41,7 +41,7 @@ const prefix = 'kyle@kylelucas.io';
 const history = [
   { value: 'Welcome to my terminal!' },
   { value: ' ' },
-  { value: 'My name is Kyle Lucas and I am a Software Engineer located in Los Angeles, CA.' },
+  { value: 'My name is Kyle Lucas and i\'m a Software Engineer from Los Angeles, California.' },
   { value: 'If you\'d like to learn more about me go ahead and run `cat README.md` without the backticks :)' }
 ];
 
@@ -64,13 +64,13 @@ const structure = {
       }
     },
     js: {
-      'kylelucas.io': {
+      'kylelucas-io.md': {
         content: 'This is the text content for <file1> of <src>'
       },
     },
     other: {},
     ruby: {
-      singing_assistant: {
+      "singing_assistant.md": {
         content: 'This is the text content for <file1> of <src>'
       },
     },
