@@ -40,7 +40,7 @@ const styles = {
 const theme = 'solarized'
 const prefix = 'kyle@kylelucas.io';
 const history = [
-  { value: renderHTML('Welcome to my terminal!<br><br>My name is Kyle Lucas and i\'m a Software Engineer from Los Angeles, California.<br><br>If you\'d like to learn more about me go ahead and run `cat README.md` without the backticks :)') },
+  { value: renderHTML('Welcome to my terminal 🎉<br><br>I\'m Kyle Lucas, a Software Engineer from Los Angeles, California.<br><br>If you\'d like to learn more about me run `cat README.md` without the backticks.') },
 ];
 
 const structure = {

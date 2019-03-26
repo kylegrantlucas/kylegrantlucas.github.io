@@ -1,5 +1,29 @@
 .App {
   margin: 100px auto;
-  width: 630px;
-  height: 450px;
+  width: 50vw;
+  height: 65vh;
+}
+
+@media screen and (min-width: 250px) {
+  .App {
+    margin: 50px auto;
+    width: 90vw;
+    height: 85vh;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .App {
+    margin: 100px auto;
+    width: 70vw;
+    height: 80vh;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .App {
+    margin: 100px auto;
+    width: 50vw;
+    height: 65vh;
+  }
 }
