@@ -1,5 +1,5 @@
 # kylelucas.io
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c395ebd5-a579-467a-a1e8-20da790970f4/deploy-status)](https://app.netlify.com/sites/vigilant-ride-a39f95/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c395ebd5-a579-467a-a1e8-20da790970f4/deploy-status)](https://app.netlify.com/sites/vigilant-ride-a39f95/deploys) [![Maintainability](https://api.codeclimate.com/v1/badges/403837785930cff5db25/maintainability)](https://codeclimate.com/github/kylegrantlucas/kylelucas.io/maintainability)
 
 My personal website, build with TypeScript and React.
 
