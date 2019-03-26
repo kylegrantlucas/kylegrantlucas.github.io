@@ -1,4 +1,5 @@
 # kylelucas.io
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c395ebd5-a579-467a-a1e8-20da790970f4/deploy-status)](https://app.netlify.com/sites/vigilant-ride-a39f95/deploys)
 
 My personal website, build with TypeScript and React.
 
