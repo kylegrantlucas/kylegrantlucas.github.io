@@ -55,8 +55,8 @@ const structure = {
       'plex-lametric.md': {
         content: '# <a href="https://github.com/kylegrantlucas/plex-lametric">plex-lametric</a><br><br>A small little HTTP server that listens to a Plex Media Server websocket to display Now Playing information on a LaMetric clock.'
       },
-      'transmission-exporter.md': {
-        content: '# <a href="https://github.com/kylegrantlucas/transmission-explorer">transmission-explorer</a><br><br>A prometheus exporter for Transmission metrics.'
+      'cyberpower-exporter.md': {
+        content: '# <a href="https://github.com/kylegrantlucas/cyberpower-explorer">transmission-explorer</a><br><br>A prometheus exporter for metrics from the Cyberpower UPS line.'
       }
     },
     js: {
@@ -70,12 +70,16 @@ const structure = {
     other: {},
     ruby: {
       "singing_assistant.md": {
-        content: '# <a href="https://github.com/kylegrantlucas/singing-assistan">transmission-explorer</a><br><br>A prometheus exporter for Transmission metrics.'
+        content: '# <a href="https://github.com/kylegrantlucas/singing-assistant">singing-assistant</a><br><br>A homebrew Alexa server for arbitrary plugins.'
       },
     },
   },
   work: {
-    current: {},
+    current: {
+      "iamplus.md": {
+        content: '# i.am+<br><br>## Roles<br><br>### Software Engineering Manager<br><br>* Managed a small but effective backend services team<br>* Lead the planning and execution of all US-based infrastructure<br>* Organized deployment of several microservices on a Docker + Kubernetes platform<br><br>### Senior Software Engineer<br><br>* Built serveral highly scalable services for a music streaming platform<br>* Optimized elasticsearch for voice-first accurate search on a music knowledge base<br>* Built several tools for fast ingestion of gigabytes of music metadata for service consumption<br>* Golang, gRPC/HTTP, Postgresql, Elasticsearch, Redis, Neo4j, and Ruby (Rails & Sinatra)',
+      },
+    },
     previous: {},
   },
 };
