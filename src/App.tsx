@@ -11,7 +11,20 @@ export const clear = {
     },
 };
 
-const extensions = { clear };
+export const open = {
+  exec: ({ structure, state, history }, command) => {
+    const parsedCommand = history[1].value.split(' ');
+    const fileName = parsedCommand[1];
+
+    if (fileName == "resume.pdf") {
+      window.open('https://github.com/kylegrantlucas/resume/blob/master/output/kyle_modern.pdf');
+    }
+
+    return { structure, state, history };
+  },
+};
+
+const extensions = { clear, open };
 
 class App extends Component {
   public render() {
@@ -40,18 +53,14 @@ const styles = {
 const theme = 'solarized'
 const prefix = 'kyle@kylelucas.io';
 const history = [
-  { value: renderHTML('Welcome to my terminal 🎉<br><br>I\'m Kyle Lucas, a Software Engineer from Los Angeles, California.<br><br>If you\'d like to learn more about me run `cat README.md` without the backticks.') },
+  { value: renderHTML('Welcome to my terminal 🎉<br><br>I\'m Kyle Lucas, a Software Engineer from Los Angeles, California.<br><br>If you\'d like to learn more about me run `cat README.md` without the backticks.<br><br>Other Examples:<br>`ls` - list all files & directories<br>`open resume.pdf` - Open my resume<br>`cat work/current/iamplus.md` - View information about my current work<br>`cat projects/go/plex-latmetric.md` - View information about my plex-lametric project<br><br>') },
 ];
 
 const structure = {
   "CREDITS.md": { content: 'First thanks to /u/Flurokazoo and the awesome <a href="http://background.jasperdekroon.nl">Last.FM collage generator</a>' },
   'README.md': { content: '# Kyle Lucas<br><br># Find Me Elsewhere<br><br><i class="fab fa-github-alt"></i> <a href="https://github.com/kylegrantlucas">GitHub</a><br><i class="fab fa-lastfm-square"></i> <a href="https://last.fm/user/thejazi13">Last.fm</a><br><i class="fab fa-twitter-square"></i> <a href="https://twitter.com/kylegrantlucas">Twitter</a><br>' },
+  'resume.pdf': '',
   projects: {
-    // c: {
-    //   sugarkorn: {
-    //     content: 'This is the text content for <file1> of <src>'
-    //   },
-    // },
     go: {
       'plex-lametric.md': {
         content: '# <a href="https://github.com/kylegrantlucas/plex-lametric">plex-lametric</a><br><br>A small little HTTP server that listens to a Plex Media Server websocket to display Now Playing information on a LaMetric clock.'
