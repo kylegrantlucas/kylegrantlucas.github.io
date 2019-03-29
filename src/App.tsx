@@ -84,7 +84,7 @@ const structure = {
               <i class="fab fa-lastfm-square"></i> <a href="https://last.fm/user/thejazi13">Last.fm</a><br>
               <i class="fab fa-twitter-square"></i> <a href="https://twitter.com/kylegrantlucas">Twitter</a><br>` },
   'resume.pdf': {
-    content: '<br>',
+    content: 'You can find my resume here: <a href="https://github.com/kylegrantlucas/resume/blob/master/output/kyle_modern.pdf">https://github.com/kylegrantlucas/resume/blob/master/output/kyle_modern.pdf</a>',
   },
   projects: {
     go: {
