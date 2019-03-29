@@ -53,13 +53,37 @@ const styles = {
 const theme = 'solarized'
 const prefix = 'kyle@kylelucas.io';
 const history = [
-  { value: renderHTML('Welcome to my terminal 🎉<br><br>I\'m Kyle Lucas, a Software Engineer from Los Angeles, California.<br><br>If you\'d like to learn more about me run `cat README.md` without the backticks.<br><br>Other Examples:<br>`ls` - list all files & directories<br>`open resume.pdf` - Open my resume<br>`cat work/current/iamplus.md` - View information about my current work<br>`cat projects/go/plex-latmetric.md` - View information about my plex-lametric project<br><br>') },
+  {
+    value: renderHTML(`Welcome to my terminal 🎉
+                      <br><br>
+                      I\'m Kyle Lucas, a Software Engineer from Los Angeles, California.
+                      <br><br>
+                      If you\'d like to learn more about me run \`cat README.md\` without the backticks.
+                      <br><br>
+                      Other Examples:
+                      <br>\`ls\` - list all files & directories
+                      <br>\`open resume.pdf\` - Open my resume
+                      <br>\`cat work/current/iamplus.md\` - View information about my current work
+                      <br>\`cat projects/go/plex-latmetric.md\` - View information about my plex-lametric project
+                      <br><br>`)
+  },
 ];
 
 const structure = {
   "CREDITS.md": { content: 'First thanks to /u/Flurokazoo and the awesome <a href="http://background.jasperdekroon.nl">Last.FM collage generator</a>' },
-  'README.md': { content: '# Kyle Lucas<br><br># Find Me Elsewhere<br><br><i class="fab fa-github-alt"></i> <a href="https://github.com/kylegrantlucas">GitHub</a><br><i class="fab fa-lastfm-square"></i> <a href="https://last.fm/user/thejazi13">Last.fm</a><br><i class="fab fa-twitter-square"></i> <a href="https://twitter.com/kylegrantlucas">Twitter</a><br>' },
-  'resume.pdf': '',
+  'README.md': {
+    content: `# Kyle Lucas
+              <br><br>
+              ## Intro
+              <br><br>
+              Hello! I'm a software engineer with a passion for building efficent, scalable, stable services. I primary like to build in Go but also have lots of personal and professional experience with Ruby. I have a whole bunch of projects I'd love for you to check out over in the projects/ directory!
+              <br><br>
+              ## Find Me Elsewhere
+              <br><br>
+              <i class="fab fa-github-alt"></i> <a href="https://github.com/kylegrantlucas">GitHub</a><br>
+              <i class="fab fa-lastfm-square"></i> <a href="https://last.fm/user/thejazi13">Last.fm</a><br>
+              <i class="fab fa-twitter-square"></i> <a href="https://twitter.com/kylegrantlucas">Twitter</a><br>` },
+  'resume.pdf': '<br>',
   projects: {
     go: {
       'plex-lametric.md': {
@@ -67,7 +91,10 @@ const structure = {
       },
       'cyberpower-exporter.md': {
         content: '# <a href="https://github.com/kylegrantlucas/cyberpower-explorer">transmission-explorer</a><br><br>A prometheus exporter for metrics from the Cyberpower UPS line.'
-      }
+      },
+      'resume-exporter.md': {
+        content: '# <a href="https://github.com/kylegrantlucas/resume-exporter">resume-exporter</a><br><br>A JSONResume to LaTeX exporter with some fun additions.'
+      },
     },
     js: {
       'kylelucas-io.md': {
