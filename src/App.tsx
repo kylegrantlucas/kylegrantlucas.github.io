@@ -83,7 +83,9 @@ const structure = {
               <i class="fab fa-github-alt"></i> <a href="https://github.com/kylegrantlucas">GitHub</a><br>
               <i class="fab fa-lastfm-square"></i> <a href="https://last.fm/user/thejazi13">Last.fm</a><br>
               <i class="fab fa-twitter-square"></i> <a href="https://twitter.com/kylegrantlucas">Twitter</a><br>` },
-  'resume.pdf': '<br>',
+  'resume.pdf': {
+    content: '<br>',
+  },
   projects: {
     go: {
       'plex-lametric.md': {
