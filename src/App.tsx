@@ -91,7 +91,7 @@ const structure = {
   projects: {
     go: {
       'cyberpower-exporter.md': {
-        content: `# <a href="https://github.com/kylegrantlucas/cyberpower-explorer">transmission-explorer</a>
+        content: `# <a href="https://github.com/kylegrantlucas/cyberpower-explorer">cyberpower-explorer</a>
                   <br><br>
                   A prometheus exporter for metrics from the Cyberpower UPS line.`
       },
