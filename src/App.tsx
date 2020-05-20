@@ -151,7 +151,7 @@ const structure = {
                   <br><br>
                   ### Senior Software Engineer (May 2019 - May 2020)
                   <br><br>
-                  * Lead conversion of backend from a 3rd party lambda to a native Go lambda
+                  * Led conversion of backend from a 3rd party lambda to a native Go lambda
                   <br>
                   * Helped design and implement a new version of our curriculum backend
                   <br>
@@ -209,7 +209,7 @@ const structure = {
                   <br><br>
                   * Managed a small but effective backend services team
                   <br>
-                  * Lead the planning and execution of all US-based infrastructure
+                  * Led the planning and execution of all US-based infrastructure
                   <br>
                   * Worked with offshore QA and Engineering teams to pursue mutual goals
                   <br>
