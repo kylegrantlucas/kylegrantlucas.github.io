@@ -65,7 +65,7 @@ const history = [
                       <br>\`ls work/previous\` - list files about my previous work
                       <br>\`ls projects\` - list files about my projects
                       <br>\`open resume.pdf\` - Open my resume
-                      <br>\`cat work/current/iamplus.md\` - View information about my current work
+                      <br>\`cat work/current/fender.md\` - View information about my current work
                       <br>\`cat projects/go/plex-latmetric.md\` - View information about my plex-lametric project
                       <br><br>`)
   },
