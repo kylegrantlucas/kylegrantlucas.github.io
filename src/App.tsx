@@ -144,36 +144,22 @@ const structure = {
   },
   work: {
     current: {
-      "iamplus.md": {
-        content: `# i.am+
+      "fender.md": {
+        content: `# Fender Musical Instruments Corporation
                   <br><br>
                   ## Roles
                   <br><br>
-                  ### Software Engineering Manager (Oct 2018 - Present)
+                  ### Senior Software Engineer (May 2019 - May 2020)
                   <br><br>
-                  * Managed a small but effective backend services team
+                  * Lead conversion of backend from a 3rd party lambda to a native Go lambda
                   <br>
-                  * Lead the planning and execution of all US-based infrastructure
+                  * Helped design and implement a new version of our curriculum backend
                   <br>
-                  * Worked with offshore QA and Engineering teams to pursue mutual goals
+                  * Built a parser to convert MusicXML to an internal JSON format
                   <br>
-                  * Organized deployment of microservices on a Kubernetes platform
-                  <br><br>
-                  ### Senior Software Engineer (Aug 2016 - Present)
-                  <br><br>
-                  * Built several highly scalable services for a music streaming platform
+                  * Rearchitected the progress backend to handle changing content structure
                   <br>
-                  * Optimized elasticsearch for voice-first search on a music knowledge base
-                  <br>
-                  * Built tools for fast ingestion of GBs of metadata for service consumption
-                  <br>
-                  * Designed an automated pipeline for nightly music data ingestion
-                  <br>
-                  * Managed projects for our MIT interns
-                  <br>
-                  * Built a service for managing smartwatch registration and preferences
-                  <br>
-                  * Golang, gRPC, Docker, Postgresql, Elasticsearch, Redis, Neo4j, Ruby`,
+                  * Golang, Javascript, React, Lambda, DynamoDB, Postgresql, Elasticsearch`
       },
     },
     previous: {
@@ -213,6 +199,37 @@ const structure = {
                   * Worked with caching large volumes of hotel searches and results
                   <br>
                   * Ruby On Rails, Redis, Memcached, Postgresql w/ PostGIS`
+      },
+      "iamplus.md": {
+        content: `# i.am+
+                  <br><br>
+                  ## Roles
+                  <br><br>
+                  ### Software Engineering Manager (Oct 2018 - Present)
+                  <br><br>
+                  * Managed a small but effective backend services team
+                  <br>
+                  * Lead the planning and execution of all US-based infrastructure
+                  <br>
+                  * Worked with offshore QA and Engineering teams to pursue mutual goals
+                  <br>
+                  * Organized deployment of microservices on a Kubernetes platform
+                  <br><br>
+                  ### Senior Software Engineer (Aug 2016 - Present)
+                  <br><br>
+                  * Built several highly scalable services for a music streaming platform
+                  <br>
+                  * Optimized elasticsearch for voice-first search on a music knowledge base
+                  <br>
+                  * Built tools for fast ingestion of GBs of metadata for service consumption
+                  <br>
+                  * Designed an automated pipeline for nightly music data ingestion
+                  <br>
+                  * Managed projects for our MIT interns
+                  <br>
+                  * Built a service for managing smartwatch registration and preferences
+                  <br>
+                  * Golang, gRPC, Docker, Postgresql, Elasticsearch, Redis, Neo4j, Ruby`,
       },
       "radpad.md": {
         content: `# RadPad
