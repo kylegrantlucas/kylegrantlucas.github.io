@@ -16,8 +16,8 @@ export const open = {
     const parsedCommand = history[1].value.split(' ');
     const fileName = parsedCommand[1];
 
-    if (fileName == "resume.pdf") {
-      window.open('https://github.com/kylegrantlucas/resume/blob/master/output/kyle_modern.pdf');
+    if (fileName === "resume.pdf") {
+      window.open('https://github.com/kylegrantlucas/resume/raw/master/output/kyle_modern.pdf');
     }
 
     return { structure, state, history };
