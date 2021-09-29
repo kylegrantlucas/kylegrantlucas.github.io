@@ -1,36 +1,26 @@
 {
   "name": "kylelucas.io",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@types/jest": "24.0.11",
-    "@types/node": "11.11.7",
-    "@types/react": "16.8.8",
-    "@types/react-dom": "16.8.3",
-    "prettier": "^1.16.4",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-fish": "^1.0.0",
-    "react-render-html": "^0.6.0",
-    "react-scripts": "2.1.8",
-    "tslint": "^5.14.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-react": "^3.6.0",
-    "typescript": "3.3.4000"
-  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kylegrantlucas/kylelucas.io",
+  "author": "Kyle Lucas <kyle@kylelucas.io>",
+  "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "clean": "rimraf dist src/_js",
+    "build": "npm-run-all clean build:ts build:11ty",
+    "dev": "NODE_ENV=dev npm-run-all clean build:ts -p watch:* -- --watch",
+    "build:11ty": "eleventy --quiet",
+    "watch:11ty": "eleventy --serve --quiet",
+    "build:ts": "tsc --outDir src/_js",
+    "watch:ts": "npm run build:ts --watch",
+    "test": "jest"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "@types/node": "^16.10.1",
+    "jest": "^27.2.3",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.4.3"
+  }
 }
