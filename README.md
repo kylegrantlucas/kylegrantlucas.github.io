@@ -1,13 +1,12 @@
 # kylelucas.io
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c395ebd5-a579-467a-a1e8-20da790970f4/deploy-status)](https://app.netlify.com/sites/vigilant-ride-a39f95/deploys)
 
-My personal website, built with 11ty.
+My personal website, built with [11ty](https://www.11ty.dev/).
 
 ## Goals
 
 The main goal with my personal site build this time around was simplicity. I didn't want to maintain a complex javascript app or build process.
 
-I already keep my resume in [another GitHub repo]() so I thought it would be fun to have my personal website generate off of that file, keeping my resume and website in sync at all times.
+I already keep my resume in [another GitHub repo](https://github.com/kylegrantlucas/resume) so I thought it would be fun to have my personal website generate off of that file, keeping my resume and website in sync at all times.
 
 I chose 11ty because it allowed for minimal configuration and code to achieve this goal.
 
