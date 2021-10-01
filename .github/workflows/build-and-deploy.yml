@@ -10,6 +10,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Download Resume
+        run: |
+          mkdir -p src/_data && curl -o src/_data/resume.json https://github.com/kylegrantlucas/resume/releases/latest/download/kyle_modern.pdf
       - uses: jsmrcaga/action-netlify-deploy@v1.6.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}

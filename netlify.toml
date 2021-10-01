@@ -8,6 +8,6 @@
 [[plugins]]
   package = "@netlify/plugin-sitemap"
 
-[context.production]
-  command = "./scripts/get-resume.sh"
+# [context.production]
+#   command = "./scripts/get-resume.sh"
   

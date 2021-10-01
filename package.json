@@ -5,6 +5,10 @@
   "repository": "https://github.com/kylegrantlucas/kylelucas.io",
   "author": "Kyle Lucas <kyle@kylelucas.io>",
   "license": "MIT",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "dev": "npx @11ty/eleventy --serve"
+  },
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
     "@vidhill/fortawesome-brands-11ty-shortcode": "^1.0.2",
