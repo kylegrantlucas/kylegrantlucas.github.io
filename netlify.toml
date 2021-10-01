@@ -1,0 +1,13 @@
+[build]
+  publish = "_site/"
+  command = "npx @11ty/eleventy"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+
+[context.production]
+  command = "./get-resume.sh"
+  
