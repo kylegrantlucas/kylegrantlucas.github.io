@@ -9,5 +9,5 @@
   package = "@netlify/plugin-sitemap"
 
 [context.production]
-  command = "./get-resume.sh"
+  command = "./scripts/get-resume.sh"
   
