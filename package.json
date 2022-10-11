@@ -10,10 +10,10 @@
     "dev": "npx @11ty/eleventy --serve"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy": "^1.0.2",
     "@vidhill/fortawesome-brands-11ty-shortcode": "^1.0.2",
     "@vidhill/fortawesome-free-regular-11ty-shortcode": "^1.0.3",
-    "clean-css": "^5.2.1",
+    "clean-css": "^5.3.1",
     "eleventy-plugin-emoji": "^1.1.0"
   }
 }
