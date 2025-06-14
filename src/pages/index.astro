@@ -1,0 +1,66 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+
+// Fetch resume data
+const resumeResponse = await fetch(
+    "https://raw.githubusercontent.com/kylegrantlucas/resume/master/resume.json",
+);
+const resume = await resumeResponse.json();
+---
+
+<Layout>
+    <h1>Hi! My name is {resume.basics.name} 👋</h1>
+
+    <h2>About</h2>
+
+    <p>
+        I'm a <strong>{resume.basics.label}</strong> based in {
+            resume.basics.location.city
+        }.
+    </p>
+
+    <p>
+        Currently I work at <a href={resume.work[0].website}
+            >{resume.work[0].company}</a
+        >.
+    </p>
+
+    <p>
+        Previously I have worked at <a href={resume.work[2].website}
+            >{resume.work[2].company}</a
+        > and <a href={resume.work[3].website}>{resume.work[3].company}</a>.
+    </p>
+
+    <h2>Connect</h2>
+
+    <p>
+        You can find me elsewhere on the internet:
+        {
+            resume.basics.profiles
+                .slice()
+                .reverse()
+                .map((profile, index) => (
+                    <span>
+                        <a href={profile.url}>
+                            <Icon
+                                type="brand"
+                                name={profile.network.toLowerCase()}
+                            />{" "}
+                            {profile.network}
+                        </a>
+                        {index < resume.basics.profiles.length - 1 ? ", " : ""}
+                    </span>
+                ))
+        }
+        .
+    </p>
+
+    <p>
+        <strong>Contact:</strong>
+        <a href={`mailto:${resume.basics.email}`}
+            ><Icon type="regular" name="paper-plane" />
+            {resume.basics.email}</a
+        >
+    </p>
+</Layout>

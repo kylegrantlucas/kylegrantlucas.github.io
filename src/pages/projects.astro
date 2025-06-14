@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Fetch resume data
+const resumeResponse = await fetch('https://raw.githubusercontent.com/kylegrantlucas/resume/master/resume.json');
+const resume = await resumeResponse.json();
+---
+
+<Layout title="Projects - Kyle Lucas-Rodriguez">
+  <h1>Projects</h1>
+
+  {resume.projects.map((project) => (
+    <section>
+      <h2><a href={project.website}>{project.name}</a></h2>
+      <h4>{project.summary}</h4>
+    </section>
+  ))}
+</Layout>

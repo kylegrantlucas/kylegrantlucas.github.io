@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Fetch resume data
+const resumeResponse = await fetch('https://raw.githubusercontent.com/kylegrantlucas/resume/master/resume.json');
+const resume = await resumeResponse.json();
+---
+
+<Layout title="Work Experience - Kyle Lucas-Rodriguez">
+  <h1>Work Experience</h1>
+
+  {resume.work.map((company) => (
+    <section>
+      <h2>{company.company}</h2>
+      <h4>{company.position} • {company.location} • {company.startDate} to {company.endDate || 'Present'}</h4>
+      <ul>
+        {company.highlights.map((highlight) => (
+          <li>{highlight}</li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Layout>
