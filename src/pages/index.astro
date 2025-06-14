@@ -1,12 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Icon from "../components/Icon.astro";
+import { getResumeData } from "../utils/resume.js";
 
 // Fetch resume data
-const resumeResponse = await fetch(
-    "https://raw.githubusercontent.com/kylegrantlucas/resume/master/resume.json",
-);
-const resume = await resumeResponse.json();
+const resume = await getResumeData();
 ---
 
 <Layout>

@@ -1,18 +1,163 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { getResumeData } from "../utils/resume.js";
 
 // Fetch resume data
-const resumeResponse = await fetch('https://raw.githubusercontent.com/kylegrantlucas/resume/master/resume.json');
-const resume = await resumeResponse.json();
+const resume = await getResumeData();
 ---
 
 <Layout title="Projects - Kyle Lucas-Rodriguez">
-  <h1>Projects</h1>
+    <h1>Projects</h1>
 
-  {resume.projects.map((project) => (
-    <section>
-      <h2><a href={project.website}>{project.name}</a></h2>
-      <h4>{project.summary}</h4>
-    </section>
-  ))}
+    <div class="projects-grid">
+        {
+            resume.projects.map((project) => (
+                <article class="project-card">
+                    <div class="project-header">
+                        <h2 class="project-title">
+                            <a href={project.website} class="project-link">
+                                {project.name}
+                            </a>
+                        </h2>
+                    </div>
+
+                    <div class="project-content">
+                        <p class="project-summary">{project.summary}</p>
+
+                        {project.keywords && project.keywords.length > 0 && (
+                            <div class="project-tags">
+                                {project.keywords.map((keyword) => (
+                                    <span class="tag">{keyword}</span>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <div class="project-footer">
+                        <a href={project.website} class="view-project">
+                            View Project →
+                        </a>
+                    </div>
+                </article>
+            ))
+        }
+    </div>
 </Layout>
+
+<style>
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+        align-items: start;
+    }
+
+    .project-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e5e5e5;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        min-height: 200px;
+    }
+
+    .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        border-color: #0066cc;
+    }
+
+    .project-header {
+        margin-bottom: 1rem;
+    }
+
+    .project-title {
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    .project-link {
+        color: #222;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .project-link:hover {
+        color: #0066cc;
+    }
+
+    .project-content {
+        flex-grow: 1;
+        margin-bottom: 1.5rem;
+    }
+
+    .project-summary {
+        color: #555;
+        line-height: 1.6;
+        margin: 0 0 1rem 0;
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .tag {
+        background: #f0f7ff;
+        color: #0066cc;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 0.25rem 0.6rem;
+        border-radius: 20px;
+        border: 1px solid #e0f0ff;
+    }
+
+    .project-footer {
+        margin-top: auto;
+        padding-top: 1rem;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    .view-project {
+        display: inline-flex;
+        align-items: center;
+        color: #0066cc;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition:
+            color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .view-project:hover {
+        color: #004499;
+        transform: translateX(2px);
+    }
+
+    @media (max-width: 600px) {
+        .projects-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .project-card {
+            padding: 1.25rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+        }
+    }
+</style>

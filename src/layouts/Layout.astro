@@ -58,15 +58,13 @@ const { title = "Kyle Lucas-Rodriguez" } = Astro.props;
         background-color: #fafafa;
     }
 
-    main h1,
     h1 {
-        line-height: 1.2 !important;
-        color: #222 !important;
-        margin-top: 0 !important;
-        margin-bottom: 0.5em !important;
-        animation: fadeInUp 0.6s ease-out;
-        font-size: 17px !important;
-        font-weight: 600 !important;
+        line-height: 1.2;
+        color: #222;
+        margin-top: 0;
+        margin-bottom: 0.5em;
+        font-size: 17px;
+        font-weight: 600;
     }
 
     h2 {
@@ -93,11 +91,6 @@ const { title = "Kyle Lucas-Rodriguez" } = Astro.props;
         margin-bottom: 0.3em;
     }
 
-    svg {
-        width: 1em;
-        height: 0.75em;
-    }
-
     a {
         color: #0066cc;
         text-decoration: none;
@@ -120,6 +113,10 @@ const { title = "Kyle Lucas-Rodriguez" } = Astro.props;
 
     li {
         margin-bottom: 0.3em;
+    }
+
+    p {
+        margin-bottom: 1em;
     }
 
     nav {
@@ -146,53 +143,6 @@ const { title = "Kyle Lucas-Rodriguez" } = Astro.props;
 
     nav a:last-child {
         margin-right: 0;
-    }
-
-    p {
-        margin-bottom: 1em;
-    }
-
-    pre {
-        background-color: #f8f8f8;
-        border: 1px solid #e1e1e1;
-        border-radius: 4px;
-        padding: 1em;
-        overflow-x: auto;
-        font-family:
-            "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
-            "Courier New", monospace;
-        font-size: 0.85em;
-        line-height: 1.4;
-        margin: 1.5em 0;
-    }
-
-    pre code {
-        background: none;
-        padding: 0;
-        border-radius: 0;
-        font-size: inherit;
-    }
-
-    @keyframes blink {
-        0%,
-        50% {
-            opacity: 1;
-        }
-        51%,
-        100% {
-            opacity: 0;
-        }
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
     }
 
     footer {
@@ -231,24 +181,6 @@ const { title = "Kyle Lucas-Rodriguez" } = Astro.props;
             margin-bottom: 0.5em;
             margin-right: 0;
             padding: 0.5em 0.8em;
-        }
-
-        .terminal {
-            margin-bottom: 1.5em;
-        }
-
-        .terminal-header {
-            padding: 6px 12px;
-        }
-
-        .terminal-body {
-            padding: 12px;
-            font-size: 12px;
-        }
-
-        .terminal-output {
-            font-size: 13px;
-            padding-left: 12px;
         }
     }
 </style>
