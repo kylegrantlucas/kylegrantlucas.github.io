@@ -1,48 +1,30 @@
-# Astro Starter Kit: Basics
+# kylelucas.io
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+My personal website, built with [Astro](https://astro.build/).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Goals
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The main goal with my personal site build this time around was simplicity and performance. I didn't want to maintain a complex JavaScript app or convoluted build process, but I still wanted modern tooling and excellent performance.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+I already keep my resume in [another GitHub repo](https://github.com/kylegrantlucas/resume) so I thought it would be fun to have my personal website generate off of that file, keeping my resume and website in sync at all times.
 
-## 🚀 Project Structure
+I chose Astro because it delivers:
+- **Zero JavaScript by default** - Ships only the HTML and CSS needed
+- **Island architecture** - Add interactivity only where needed
+- **Modern developer experience** - Great tooling with minimal configuration
+- **Excellent performance** - Static generation with optional server-side rendering
 
-Inside of your Astro project, you'll see the following folders and files:
+## Deployment
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+The site is deployed using GitHub Pages with Fastly as a CDN for improved global performance:
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+1. **GitHub Pages** handles the static site hosting with automatic deployments from the repository
+2. **Fastly CDN** provides edge caching and faster content delivery worldwide
+3. This setup gives me the simplicity of GitHub's native hosting with the performance benefits of a modern CDN
 
-## 🧞 Commands
+## Tech Stack
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Framework**: [Astro](https://astro.build/)
+- **Styling**: CSS with modern features
+- **Deployment**: [GitHub Pages](https://pages.github.com/) + [Fastly CDN](https://fastly.com/)
+- **Content**: Dynamically generated from my resume repository
