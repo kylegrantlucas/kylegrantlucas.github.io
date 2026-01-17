@@ -9,4 +9,7 @@ export default defineConfig({
   build: {
     assets: "assets",
   },
+  prefetch: {
+    prefetchAll: true,
+  },
 });

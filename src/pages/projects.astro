@@ -9,69 +9,68 @@ const resume = await getResumeData();
 <Layout title="Projects - Kyle Lucas-Rodriguez">
     <h1>Projects</h1>
 
-    <div class="projects-grid">
-        {
-            resume.projects.map((project) => (
-                <article class="project-card">
-                    <div class="project-header">
-                        <h2 class="project-title">
-                            <a href={project.website} class="project-link">
-                                {project.name}
-                            </a>
-                        </h2>
-                    </div>
+    <div class="projects-container">
+        <div class="projects-list">
+            {
+                resume.projects.map((project, index) => (
+                    <div class="project-entry">
+                        <div class="project-header">
+                            <h2 class="project-title">
+                                <a href={project.website} class="project-link">
+                                    {project.name}
+                                </a>
+                            </h2>
+                        </div>
 
-                    <div class="project-content">
-                        <p class="project-summary">{project.summary}</p>
+                        <div class="project-description">
+                            <p>{project.summary}</p>
+                        </div>
 
                         {project.keywords && project.keywords.length > 0 && (
                             <div class="project-tags">
-                                {project.keywords.map((keyword) => (
-                                    <span class="tag">{keyword}</span>
+                                <span class="tags-label">Tags: </span>
+                                {project.keywords.map((keyword, i) => (
+                                    <span class="tag">
+                                        {keyword}
+                                        {i < project.keywords.length - 1
+                                            ? ", "
+                                            : ""}
+                                    </span>
                                 ))}
                             </div>
                         )}
-                    </div>
 
-                    <div class="project-footer">
-                        <a href={project.website} class="view-project">
-                            View Project →
-                        </a>
+                        <div class="project-actions">
+                            <a href={project.website} class="view-link">
+                                View project →
+                            </a>
+                        </div>
                     </div>
-                </article>
-            ))
-        }
+                ))
+            }
+        </div>
     </div>
 </Layout>
 
 <style>
-    .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
+    .projects-container {
         margin-top: 2rem;
-        align-items: start;
     }
 
-    .project-card {
-        background: #fff;
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e5e5e5;
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease,
-            border-color 0.2s ease;
+    .projects-list {
         display: flex;
         flex-direction: column;
-        min-height: 200px;
+        gap: 2rem;
     }
 
-    .project-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        border-color: #0066cc;
+    .project-entry {
+        border: 1px solid var(--border);
+        background: var(--bg-elevated);
+        padding: 1.5rem;
+    }
+
+    .project-entry:hover {
+        border-color: var(--border-hover);
     }
 
     .project-header {
@@ -80,84 +79,67 @@ const resume = await getResumeData();
 
     .project-title {
         margin: 0;
-        font-size: 1.3rem;
-        font-weight: 700;
-        line-height: 1.3;
+        font-size: 1.1rem;
+        font-weight: normal;
+        color: var(--text);
     }
 
     .project-link {
-        color: #222;
-        text-decoration: none;
-        transition: color 0.2s ease;
+        color: var(--link);
+        text-decoration: underline;
     }
 
     .project-link:hover {
-        color: #0066cc;
+        color: var(--link-hover);
     }
 
-    .project-content {
-        flex-grow: 1;
-        margin-bottom: 1.5rem;
-    }
-
-    .project-summary {
-        color: #555;
+    .project-description {
+        margin-bottom: 1rem;
         line-height: 1.6;
-        margin: 0 0 1rem 0;
+        color: var(--text);
+    }
+
+    .project-description p {
+        margin: 0;
     }
 
     .project-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .tags-label {
+        font-weight: 600;
+        color: var(--text-muted);
     }
 
     .tag {
-        background: #f0f7ff;
-        color: #0066cc;
-        font-size: 0.8rem;
-        font-weight: 500;
-        padding: 0.25rem 0.6rem;
-        border-radius: 20px;
-        border: 1px solid #e0f0ff;
+        color: var(--text-muted);
     }
 
-    .project-footer {
-        margin-top: auto;
-        padding-top: 1rem;
-        border-top: 1px solid #f0f0f0;
+    .project-actions {
+        margin-top: 1rem;
     }
 
-    .view-project {
-        display: inline-flex;
-        align-items: center;
-        color: #0066cc;
+    .view-link {
+        color: var(--text-muted);
         text-decoration: none;
-        font-weight: 500;
         font-size: 0.9rem;
-        transition:
-            color 0.2s ease,
-            transform 0.2s ease;
     }
 
-    .view-project:hover {
-        color: #004499;
-        transform: translateX(2px);
+    .view-link:hover {
+        color: var(--text);
+        text-decoration: underline;
     }
 
     @media (max-width: 600px) {
-        .projects-grid {
-            grid-template-columns: 1fr;
-            gap: 1rem;
+        .project-entry {
+            padding: 1rem;
         }
 
-        .project-card {
-            padding: 1.25rem;
-        }
-
-        .project-title {
-            font-size: 1.2rem;
+        .projects-list {
+            gap: 1.5rem;
         }
     }
 </style>
