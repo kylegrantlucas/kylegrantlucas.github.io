@@ -1,19 +1,14 @@
 {
-  "name": "kylelucas.io",
-  "version": "2.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/kylegrantlucas/kylelucas.io",
-  "author": "Kyle Lucas <kyle@kylelucas.io>",
-  "license": "MIT",
+  "name": "astro",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "build": "npx @11ty/eleventy",
-    "dev": "npx @11ty/eleventy --serve"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
-    "@vidhill/fortawesome-brands-11ty-shortcode": "^1.0.2",
-    "@vidhill/fortawesome-free-regular-11ty-shortcode": "^1.0.3",
-    "clean-css": "^5.3.3",
-    "eleventy-plugin-emoji": "^1.1.0"
+  "dependencies": {
+    "astro": "^5.16.11"
   }
 }

@@ -1,0 +1,208 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getResumeData } from "../utils/resume.js";
+
+// Fetch resume data
+const resume = await getResumeData();
+
+// Group work experiences by company
+const groupedWork = resume.work.reduce((acc, job) => {
+    if (!acc[job.company]) {
+        acc[job.company] = [];
+    }
+    acc[job.company].push(job);
+    return acc;
+}, {});
+
+// Sort positions within each company by start date (most recent first)
+Object.keys(groupedWork).forEach((company) => {
+    groupedWork[company].sort((a, b) => {
+        const dateA = new Date(a.startDate);
+        const dateB = new Date(b.startDate);
+        return dateB - dateA;
+    });
+});
+---
+
+<Layout title="Work Experience - Kyle Lucas-Rodriguez">
+    <h1>Work Experience</h1>
+
+    <div class="work-container">
+        {
+            Object.entries(groupedWork).map(([company, positions]) => (
+                <div class="company-block">
+                    <h2>{company}</h2>
+                    <div class="positions">
+                        {positions.map((position, index) => (
+                            <details class="position" open={index === 0}>
+                                <summary class="position-summary">
+                                    <span class="expand-icon"></span>
+                                    <span class="position-info">
+                                        <span class="position-title">{position.position}</span>
+                                        <span class="position-meta">
+                                            {position.startDate} - {position.endDate || "Present"} | {position.location}
+                                        </span>
+                                    </span>
+                                </summary>
+                                <div class="position-details">
+                                    <ul class="highlights">
+                                        {position.highlights.map(
+                                            (highlight) => (
+                                                <li>{highlight}</li>
+                                            ),
+                                        )}
+                                    </ul>
+                                </div>
+                            </details>
+                        ))}
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</Layout>
+
+<style>
+    .work-container {
+        margin-top: 2rem;
+    }
+
+    .company-block {
+        margin-bottom: 2.5rem;
+        border: 1px solid var(--border);
+        background: var(--bg-elevated);
+    }
+
+    .company-block h2 {
+        margin: 0;
+        padding: 0.75rem 1rem;
+        background: var(--bg-hover);
+        border-bottom: 1px solid var(--border);
+        font-size: 1.1rem;
+        font-weight: normal;
+        color: var(--text);
+    }
+
+    .positions {
+        padding: 1rem;
+    }
+
+    .position {
+        margin-bottom: 1rem;
+        border: 1px solid var(--border);
+    }
+
+    .position:last-child {
+        margin-bottom: 0;
+    }
+
+    .position[open] {
+        border-color: var(--border-hover);
+    }
+
+    .position-summary {
+        padding: 0.75rem 1rem;
+        background: var(--bg-elevated);
+        cursor: pointer;
+        list-style: none;
+        user-select: none;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .position-summary:hover {
+        background: var(--bg-hover);
+    }
+
+    .position[open] .position-summary {
+        background: var(--bg-hover);
+    }
+
+    .position-summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .expand-icon::before {
+        content: "+";
+        color: var(--text-faint);
+        font-weight: bold;
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    .position[open] .expand-icon::before {
+        content: "-";
+    }
+
+    .position-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .position-title {
+        font-weight: 600;
+        color: var(--heading);
+    }
+
+    .position-meta {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
+    }
+
+    .position-details {
+        padding: 1rem;
+        background: var(--bg-elevated);
+        border-top: 1px solid var(--border);
+    }
+
+    .highlights {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .highlights li {
+        margin-bottom: 0.5rem;
+        padding-left: 1rem;
+        position: relative;
+        line-height: 1.6;
+        color: var(--text);
+    }
+
+    .highlights li::before {
+        content: "›";
+        position: absolute;
+        left: 0;
+        color: var(--text-faint);
+    }
+
+    .highlights li:last-child {
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 600px) {
+        .company-block h2 {
+            font-size: 1rem;
+        }
+
+        .position-summary {
+            padding: 0.75rem;
+        }
+
+        .position-title {
+            display: block;
+        }
+
+        .position-meta {
+            display: block;
+            margin-left: 0;
+            margin-top: 0.25rem;
+        }
+
+        .position-details {
+            padding: 0.75rem;
+        }
+    }
+</style>

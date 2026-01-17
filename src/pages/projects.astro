@@ -1,0 +1,145 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getResumeData } from "../utils/resume.js";
+
+// Fetch resume data
+const resume = await getResumeData();
+---
+
+<Layout title="Projects - Kyle Lucas-Rodriguez">
+    <h1>Projects</h1>
+
+    <div class="projects-container">
+        <div class="projects-list">
+            {
+                resume.projects.map((project, index) => (
+                    <div class="project-entry">
+                        <div class="project-header">
+                            <h2 class="project-title">
+                                <a href={project.website} class="project-link">
+                                    {project.name}
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="project-description">
+                            <p>{project.summary}</p>
+                        </div>
+
+                        {project.keywords && project.keywords.length > 0 && (
+                            <div class="project-tags">
+                                <span class="tags-label">Tags: </span>
+                                {project.keywords.map((keyword, i) => (
+                                    <span class="tag">
+                                        {keyword}
+                                        {i < project.keywords.length - 1
+                                            ? ", "
+                                            : ""}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
+
+                        <div class="project-actions">
+                            <a href={project.website} class="view-link">
+                                View project →
+                            </a>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .projects-container {
+        margin-top: 2rem;
+    }
+
+    .projects-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .project-entry {
+        border: 1px solid var(--border);
+        background: var(--bg-elevated);
+        padding: 1.5rem;
+    }
+
+    .project-entry:hover {
+        border-color: var(--border-hover);
+    }
+
+    .project-header {
+        margin-bottom: 1rem;
+    }
+
+    .project-title {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: normal;
+        color: var(--text);
+    }
+
+    .project-link {
+        color: var(--link);
+        text-decoration: underline;
+    }
+
+    .project-link:hover {
+        color: var(--link-hover);
+    }
+
+    .project-description {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        color: var(--text);
+    }
+
+    .project-description p {
+        margin: 0;
+    }
+
+    .project-tags {
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .tags-label {
+        font-weight: 600;
+        color: var(--text-muted);
+    }
+
+    .tag {
+        color: var(--text-muted);
+    }
+
+    .project-actions {
+        margin-top: 1rem;
+    }
+
+    .view-link {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .view-link:hover {
+        color: var(--text);
+        text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+        .project-entry {
+            padding: 1rem;
+        }
+
+        .projects-list {
+            gap: 1.5rem;
+        }
+    }
+</style>
