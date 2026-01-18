@@ -34,7 +34,7 @@ Object.keys(groupedWork).forEach((company) => {
                     <h2>{company}</h2>
                     <div class="positions">
                         {positions.map((position, index) => (
-                            <details class="position" open={index === 0}>
+                            <details class="position" open={!position.endDate}>
                                 <summary class="position-summary">
                                     <span class="expand-icon"></span>
                                     <span class="position-info">
