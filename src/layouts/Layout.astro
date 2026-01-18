@@ -54,6 +54,103 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
         <main>
             <slot />
         </main>
+        <footer id="currently-into">
+            <div id="stacked-music"></div>
+            <div><a href="https://letterboxd.com/kylegrantlucas" target="_blank" id="stacked-film"></a></div>
+            <ul id="stacked-film-list"></ul>
+            <div><a href="https://hardcover.app/@kylegrantlucas" target="_blank" id="stacked-book"></a></div>
+            <ul id="stacked-book-list"></ul>
+        </footer>
+        <script>
+            const CURRENTLY_INTO_API = "https://vastly-whole-bass.edgecompute.app";
+
+            async function fetchCurrentlyInto() {
+                try {
+                    const response = await fetch(CURRENTLY_INTO_API);
+                    if (!response.ok) throw new Error("API error");
+                    const data = await response.json();
+                    updateDisplay(data);
+                } catch (error) {
+                    console.error("Failed to fetch currently-into data:", error);
+                    document.getElementById("marquee-content").textContent = "Could not load current status";
+                }
+            }
+
+            function updateDisplay(data) {
+                // Build text parts
+                let musicText = "";
+                let filmText = "";
+                let bookText = "";
+
+                if (data.music) {
+                    const prefix = data.music.nowPlaying ? "💿 Spinning:" : "♫ Last played:";
+                    musicText = { prefix, artist: data.music.artist, track: data.music.track, url: data.music.url };
+                }
+
+                if (data.films && data.films.length > 0) {
+                    const filmTexts = data.films.map((film) => {
+                        const year = film.year ? ` (${film.year})` : "";
+                        const rating = film.rating ? ` ${film.rating}` : "";
+                        return `${film.title}${year}${rating}`;
+                    });
+                    filmText = `🎬 Watched: ${filmTexts.join(" · ")}`;
+                }
+
+                if (data.books && data.books.length > 0) {
+                    const bookTitles = data.books.map((book) => book.title);
+                    bookText = `📖 Reading: ${bookTitles.join(" · ")}`;
+                }
+
+                // Music
+                const stackedMusic = document.getElementById("stacked-music");
+                if (musicText) {
+                    stackedMusic.innerHTML = `<a href="https://www.last.fm/user/kylelucas93" target="_blank">${musicText.prefix}</a> <a href="${musicText.url}" target="_blank">${musicText.artist} - ${musicText.track}</a>`;
+                } else {
+                    stackedMusic.textContent = "";
+                }
+
+                // Films as list (linked to TMDB)
+                document.getElementById("stacked-film").textContent = data.films?.length ? "🎬 Watched:" : "";
+                const filmList = document.getElementById("stacked-film-list");
+                filmList.innerHTML = "";
+                if (data.films?.length) {
+                    data.films.forEach((film) => {
+                        const li = document.createElement("li");
+                        const year = film.year ? ` (${film.year})` : "";
+                        const rating = film.rating ? ` ${film.rating}` : "";
+                        const link = document.createElement("a");
+                        link.href = film.movieUrl;
+                        link.target = "_blank";
+                        link.textContent = `${film.title}${year}`;
+                        li.appendChild(link);
+                        if (rating) li.appendChild(document.createTextNode(rating));
+                        filmList.appendChild(li);
+                    });
+                }
+
+                // Books as list (linked to Amazon)
+                document.getElementById("stacked-book").textContent = data.books?.length ? "📖 Reading:" : "";
+                const bookList = document.getElementById("stacked-book-list");
+                bookList.innerHTML = "";
+                if (data.books?.length) {
+                    data.books.forEach((book) => {
+                        const li = document.createElement("li");
+                        const author = book.author ? ` by ${book.author}` : "";
+                        const percent = book.percent ? ` (${book.percent}%)` : "";
+                        const link = document.createElement("a");
+                        link.href = book.amazonUrl;
+                        link.target = "_blank";
+                        link.textContent = book.title;
+                        li.appendChild(link);
+                        li.appendChild(document.createTextNode(`${author}${percent}`));
+                        bookList.appendChild(li);
+                    });
+                }
+            }
+
+            // Fetch on page load
+            fetchCurrentlyInto();
+        </script>
     </body>
 </html>
 
@@ -66,9 +163,9 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
         --text-muted: #999;
         --text-faint: #666;
         --heading: #fff;
-        --link: #fff;
-        --link-hover: #ccc;
-        --link-visited: #888;
+        --link: #888;
+        --link-hover: #aaa;
+        --link-visited: #666;
         --border: #333;
         --border-hover: #444;
         --selection-bg: #444;
@@ -85,9 +182,9 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
             --text-muted: #666;
             --text-faint: #999;
             --heading: #111;
-            --link: #111;
-            --link-hover: #555;
-            --link-visited: #666;
+            --link: #0000ff;
+            --link-hover: #0000cc;
+            --link-visited: #551a8b;
             --border: #ddd;
             --border-hover: #bbb;
             --selection-bg: #b3d4fc;
@@ -220,5 +317,46 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
             margin-right: 0;
             padding: 0.5em 0;
         }
+    }
+
+    /* Currently Into Footer */
+    #currently-into {
+        margin-top: 3em;
+        padding-top: 1em;
+        border-top: 1px solid var(--border);
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.85em;
+        color: var(--text-muted);
+    }
+
+    #currently-into > div {
+        margin: 0.5em 0 0.2em 0;
+    }
+
+    #currently-into ul {
+        margin: 0.2em 0 0.5em 1.5em;
+        padding: 0;
+        list-style-type: "» ";
+    }
+
+    #currently-into li {
+        margin: 0.15em 0;
+        padding-left: 0.3em;
+    }
+
+    #currently-into a {
+        color: var(--text);
+        text-decoration: underline;
+        text-decoration-color: var(--text-faint);
+        text-underline-offset: 2px;
+    }
+
+    #currently-into a:hover {
+        color: var(--heading);
+        text-decoration-color: var(--text-muted);
+    }
+
+    #currently-into a:visited {
+        color: var(--text);
     }
 </style>

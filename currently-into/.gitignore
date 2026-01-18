@@ -1,0 +1,13 @@
+# Build output
+bin/
+pkg/
+__input_bundled.js.map
+
+# Dependencies
+node_modules/
+
+# Secrets (never commit!)
+secrets.json
+
+# Fastly CLI
+.fastly/

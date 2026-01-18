@@ -1,0 +1,17 @@
+{
+  "name": "currently-into",
+  "version": "1.0.0",
+  "description": "Fastly Compute app that aggregates Last.fm, Letterboxd, and Hardcover data",
+  "type": "module",
+  "scripts": {
+    "build": "npx js-compute-runtime ./src/index.js ./bin/main.wasm",
+    "deploy": "fastly compute deploy",
+    "dev": "fastly compute serve"
+  },
+  "devDependencies": {
+    "@fastly/js-compute": "^3.34.0"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.5.1"
+  }
+}

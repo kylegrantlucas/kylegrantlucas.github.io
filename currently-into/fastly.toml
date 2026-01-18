@@ -1,0 +1,31 @@
+# This file describes a Fastly Compute package. To learn more visit:
+# https://www.fastly.com/documentation/reference/compute/fastly-toml
+
+authors = ["Kyle Lucas-Rodriguez <kyle@kylelucas.io>"]
+description = "Currently Into - aggregates Last.fm, Letterboxd, and Hardcover data"
+language = "javascript"
+manifest_version = 3
+name = "currently-into"
+service_id = "7ndVSWBIW47wEDt8F7h5ec"
+
+[local_server]
+
+  [local_server.backends]
+
+    [local_server.backends.hardcover]
+      url = "https://api.hardcover.app"
+
+    [local_server.backends.lastfm]
+      url = "https://ws.audioscrobbler.com"
+
+    [local_server.backends.letterboxd]
+      url = "https://letterboxd.com"
+
+  [local_server.config_stores]
+
+    [local_server.config_stores.secrets]
+      file = "secrets.json"
+      format = "json"
+
+[scripts]
+  build = "npm run build"

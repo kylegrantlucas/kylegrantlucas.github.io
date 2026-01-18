@@ -1,0 +1,265 @@
+/// <reference types="@fastly/js-compute" />
+import { ConfigStore } from "fastly:config-store";
+import { XMLParser } from "fast-xml-parser";
+
+// Configuration
+const LASTFM_USER = "kylelucas93";
+const LETTERBOXD_USER = "kylegrantlucas";
+const HARDCOVER_USER = "kylegrantlucas";
+const CACHE_TTL = 60; // seconds
+
+addEventListener("fetch", (event) => event.respondWith(handleRequest(event)));
+
+async function handleRequest(event) {
+  // CORS headers for cross-origin requests from kylelucas.io
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+
+  // Handle preflight
+  if (event.request.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  try {
+    // Get secrets from Config Store
+    const secrets = new ConfigStore("secrets");
+    const lastfmApiKey = secrets.get("LASTFM_API_KEY");
+    const hardcoverToken = secrets.get("HARDCOVER_TOKEN");
+
+    // Fetch all three sources in parallel
+    const [music, films, books] = await Promise.all([
+      fetchLastFm(lastfmApiKey),
+      fetchLetterboxd(),
+      fetchHardcover(hardcoverToken),
+    ]);
+
+    const response = {
+      music,
+      films,
+      books,
+      fetchedAt: new Date().toISOString(),
+    };
+
+    return new Response(JSON.stringify(response), {
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": `public, max-age=${CACHE_TTL}`,
+        "Surrogate-Control": `max-age=${CACHE_TTL}`,
+        ...corsHeaders,
+      },
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ error: error.message }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+          ...corsHeaders,
+        },
+      }
+    );
+  }
+}
+
+/**
+ * Fetch currently playing or last played track from Last.fm
+ */
+async function fetchLastFm(apiKey) {
+  try {
+    const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${apiKey}&format=json&limit=1`;
+
+    const response = await fetch(url, { backend: "lastfm" });
+
+    if (!response.ok) {
+      throw new Error(`Last.fm API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const track = data.recenttracks?.track?.[0];
+
+    if (!track) {
+      return null;
+    }
+
+    return {
+      artist: track.artist?.["#text"] || track.artist,
+      track: track.name,
+      album: track.album?.["#text"] || null,
+      nowPlaying: track["@attr"]?.nowplaying === "true",
+      url: track.url,
+    };
+  } catch (error) {
+    console.error("Last.fm fetch error:", error);
+    return null;
+  }
+}
+
+/**
+ * Fetch most recent film from Letterboxd RSS feed
+ */
+async function fetchLetterboxd() {
+  try {
+    const url = `https://letterboxd.com/${LETTERBOXD_USER}/rss/`;
+
+    const response = await fetch(url, { backend: "letterboxd" });
+
+    if (!response.ok) {
+      throw new Error(`Letterboxd RSS error: ${response.status}`);
+    }
+
+    const xml = await response.text();
+    const parser = new XMLParser({
+      ignoreAttributes: false,
+      attributeNamePrefix: "@_",
+    });
+    const feed = parser.parse(xml);
+
+    const items = feed.rss?.channel?.item;
+    if (!items || items.length === 0) {
+      return [];
+    }
+
+    // Get the 3 most recent items
+    const itemList = Array.isArray(items) ? items.slice(0, 3) : [items];
+
+    return itemList.map((item) => {
+      const title = item.title || "";
+      const link = item.link || "";
+      const memberRating = item["letterboxd:memberRating"];
+      const rating = memberRating ? convertToStars(parseFloat(memberRating)) : null;
+      const filmTitle = item["letterboxd:filmTitle"] || title.split(",")[0].trim();
+      const filmYear = item["letterboxd:filmYear"] || null;
+      const tmdbId = item["tmdb:movieId"] || null;
+
+      // Use TMDB direct link if available, otherwise Letterboxd page
+      const movieUrl = tmdbId
+        ? `https://www.themoviedb.org/movie/${tmdbId}`
+        : link;
+
+      return {
+        title: filmTitle,
+        year: filmYear ? parseInt(filmYear) : null,
+        rating,
+        url: link,
+        movieUrl,
+      };
+    });
+  } catch (error) {
+    console.error("Letterboxd fetch error:", error);
+    return [];
+  }
+}
+
+/**
+ * Convert numeric rating to star display
+ */
+function convertToStars(rating) {
+  if (!rating || rating < 0) return null;
+
+  const fullStars = Math.floor(rating);
+  const hasHalf = rating % 1 >= 0.5;
+
+  let stars = "\u2605".repeat(fullStars); // ★
+  if (hasHalf) stars += "\u00BD"; // ½
+
+  return stars;
+}
+
+/**
+ * Fetch currently reading book from Hardcover GraphQL API
+ */
+async function fetchHardcover(token) {
+  try {
+    const query = `
+      query GetCurrentlyReading($username: citext!) {
+        users(where: { username: { _eq: $username } }) {
+          user_books(
+            where: { status_id: { _eq: 2 } }
+            order_by: { updated_at: desc }
+          ) {
+            user_book_reads(limit: 1, order_by: { started_at: desc_nulls_last }) {
+              progress
+              edition {
+                isbn_10
+                isbn_13
+                asin
+              }
+            }
+            book {
+              title
+              slug
+              pages
+              contributions {
+                author {
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const response = await fetch("https://api.hardcover.app/v1/graphql", {
+      backend: "hardcover",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        query,
+        variables: { username: HARDCOVER_USER },
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Hardcover API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const userBooks = data.data?.users?.[0]?.user_books;
+
+    if (!userBooks || userBooks.length === 0) {
+      return [];
+    }
+
+    return userBooks.map((userBook) => {
+      const book = userBook.book;
+      const latestRead = userBook.user_book_reads?.[0];
+      const edition = latestRead?.edition;
+      const author = book.contributions?.[0]?.author?.name || null;
+
+      // Progress is already a percentage from user_book_reads
+      const percent = latestRead?.progress ? Math.round(latestRead.progress) : null;
+
+      // Generate Amazon URL - prefer ASIN/ISBN for direct product link, fallback to search
+      let amazonUrl;
+      if (edition?.asin) {
+        amazonUrl = `https://www.amazon.com/dp/${edition.asin}`;
+      } else if (edition?.isbn_10) {
+        amazonUrl = `https://www.amazon.com/dp/${edition.isbn_10}`;
+      } else if (edition?.isbn_13) {
+        amazonUrl = `https://www.amazon.com/dp/${edition.isbn_13}`;
+      } else {
+        // Fallback to search
+        const amazonQuery = encodeURIComponent(`${book.title}${author ? ` ${author}` : ""}`);
+        amazonUrl = `https://www.amazon.com/s?k=${amazonQuery}&i=stripbooks`;
+      }
+
+      return {
+        title: book.title,
+        author,
+        percent,
+        amazonUrl,
+      };
+    });
+  } catch (error) {
+    console.error("Hardcover fetch error:", error);
+    return [];
+  }
+}

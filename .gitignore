@@ -29,3 +29,8 @@ tags.*
 # Astro
 .astro
 dist
+
+# Local dev
+.direnv
+.claude
+.playwright-mcp
