@@ -12,36 +12,22 @@ const resume = await getResumeData();
     <div class="projects-container">
         <div class="projects-list">
             {
-                resume.projects.map((project, index) => (
+                resume.projects.map((project) => (
                     <div class="project-entry">
                         <div class="project-header">
                             <h2 class="project-title">
-                                <a href={project.website} class="project-link">
+                                <a href={project.url} class="project-link">
                                     {project.name}
                                 </a>
                             </h2>
                         </div>
 
                         <div class="project-description">
-                            <p>{project.summary}</p>
+                            <p>{project.description}</p>
                         </div>
 
-                        {project.keywords && project.keywords.length > 0 && (
-                            <div class="project-tags">
-                                <span class="tags-label">Tags: </span>
-                                {project.keywords.map((keyword, i) => (
-                                    <span class="tag">
-                                        {keyword}
-                                        {i < project.keywords.length - 1
-                                            ? ", "
-                                            : ""}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
-
                         <div class="project-actions">
-                            <a href={project.website} class="view-link">
+                            <a href={project.url} class="view-link">
                                 View project →
                             </a>
                         </div>
@@ -101,21 +87,6 @@ const resume = await getResumeData();
 
     .project-description p {
         margin: 0;
-    }
-
-    .project-tags {
-        margin-bottom: 1rem;
-        font-size: 0.9rem;
-        color: var(--text-muted);
-    }
-
-    .tags-label {
-        font-weight: 600;
-        color: var(--text-muted);
-    }
-
-    .tag {
-        color: var(--text-muted);
     }
 
     .project-actions {

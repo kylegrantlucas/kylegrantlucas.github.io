@@ -1,16 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { getResumeData } from "../utils/resume.js";
+import { getResumeData, formatDate } from "../utils/resume.js";
 
 // Fetch resume data
 const resume = await getResumeData();
 
 // Group work experiences by company
 const groupedWork = resume.work.reduce((acc, job) => {
-    if (!acc[job.company]) {
-        acc[job.company] = [];
+    if (!acc[job.name]) {
+        acc[job.name] = [];
     }
-    acc[job.company].push(job);
+    acc[job.name].push(job);
     return acc;
 }, {});
 
@@ -40,7 +40,7 @@ Object.keys(groupedWork).forEach((company) => {
                                     <span class="position-info">
                                         <span class="position-title">{position.position}</span>
                                         <span class="position-meta">
-                                            {position.startDate} - {position.endDate || "Present"} | {position.location}
+                                            {formatDate(position.startDate)} – {formatDate(position.endDate) || "Present"} | {position.location}
                                         </span>
                                     </span>
                                 </summary>

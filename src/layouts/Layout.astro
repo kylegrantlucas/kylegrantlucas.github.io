@@ -3,9 +3,15 @@ import { ClientRouter } from "astro:transitions";
 
 export interface Props {
     title?: string;
+    description?: string;
 }
 
-const { title = "Kyle Lucas-Rodriguez" } = Astro.props;
+const {
+    title = "Kyle Lucas-Rodriguez",
+    description = "Software Engineer at Fastly, specializing in distributed systems and backend infrastructure."
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
 ---
 
 <!doctype html>
@@ -13,9 +19,23 @@ const { title = "Kyle Lucas-Rodriguez" } = Astro.props;
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Kyle Lucas-Rodriguez - Platform Engineer" />
+        <meta name="description" content={description} />
         <meta name="theme-color" content="#0d0d0d" />
+        <link rel="canonical" href={canonicalURL} />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:site_name" content="Kyle Lucas-Rodriguez" />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+
         <title>{title}</title>
         <ClientRouter />
     </head>
@@ -34,7 +54,6 @@ const { title = "Kyle Lucas-Rodriguez" } = Astro.props;
         <main>
             <slot />
         </main>
-        <footer></footer>
     </body>
 </html>
 
@@ -188,10 +207,6 @@ const { title = "Kyle Lucas-Rodriguez" } = Astro.props;
 
     nav a:last-child {
         margin-right: 0;
-    }
-
-    footer {
-        margin-top: 3em;
     }
 
     @media (max-width: 600px) {

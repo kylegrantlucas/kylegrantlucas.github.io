@@ -19,15 +19,15 @@ const resume = await getResumeData();
     </p>
 
     <p>
-        Currently I work at <a href={resume.work[0].website}
-            >{resume.work[0].company}</a
+        Currently I work at <a href={resume.work[0].url}
+            >{resume.work[0].name}</a
         >.
     </p>
 
     <p>
-        Previously I have worked at <a href={resume.work[2].website}
-            >{resume.work[2].company}</a
-        > and <a href={resume.work[3].website}>{resume.work[3].company}</a>.
+        Previously I have worked at <a href={resume.work[2].url}
+            >{resume.work[2].name}</a
+        > and <a href={resume.work[3].url}>{resume.work[3].name}</a>.
     </p>
 
     <h2>Connect</h2>
@@ -41,10 +41,7 @@ const resume = await getResumeData();
                 .map((profile, index) => (
                     <span>
                         <a href={profile.url}>
-                            <Icon
-                                type="brand"
-                                name={profile.network.toLowerCase()}
-                            />{" "}
+                            <Icon name={profile.network.toLowerCase()} />{" "}
                             {profile.network}
                         </a>
                         {index < resume.basics.profiles.length - 1 ? ", " : ""}
@@ -57,7 +54,7 @@ const resume = await getResumeData();
     <p>
         <strong>Contact:</strong>
         <a href={`mailto:${resume.basics.email}`}
-            ><Icon type="regular" name="paper-plane" />
+            ><Icon name="paper-plane" />
             {resume.basics.email}</a
         >
     </p>

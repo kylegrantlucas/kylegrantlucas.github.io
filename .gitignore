@@ -26,7 +26,6 @@ tags.*
 # Mac
 .DS_Store
 
-# Eleventy output
-_site
+# Astro
+.astro
 dist
-_data
