@@ -38,6 +38,10 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
 
         <title>{title}</title>
         <ClientRouter />
+
+        <!-- Performance: Preconnect to API for faster TTFB -->
+        <link rel="preconnect" href="https://kyle-currently-into.global.ssl.fastly.net" crossorigin />
+        <link rel="dns-prefetch" href="https://kyle-currently-into.global.ssl.fastly.net" />
     </head>
     <body>
         <header>
@@ -55,24 +59,68 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
             <slot />
         </main>
         <footer id="currently-into">
-            <div id="stacked-music"></div>
+            <div id="stacked-music" class="loading-skeleton"></div>
             <div><a href="https://letterboxd.com/kylegrantlucas" target="_blank" id="stacked-film"></a></div>
             <ul id="stacked-film-list"></ul>
             <div><a href="https://hardcover.app/@kylegrantlucas" target="_blank" id="stacked-book"></a></div>
             <ul id="stacked-book-list"></ul>
         </footer>
         <script>
-            const CURRENTLY_INTO_API = "https://vastly-whole-bass.edgecompute.app";
+            // Use VCL service for WAF/DDoS protection layer
+            const CURRENTLY_INTO_API = "https://kyle-currently-into.global.ssl.fastly.net";
+            const CACHE_KEY = "currently-into-cache";
+            const CACHE_TTL = 60 * 1000; // 1 minute in ms
+            const STALE_TTL = 5 * 60 * 1000; // 5 minutes stale-while-revalidate
 
             async function fetchCurrentlyInto() {
+                // Try to show cached data immediately (stale-while-revalidate pattern)
+                const cached = getCachedData();
+                if (cached) {
+                    updateDisplay(cached.data);
+                    // If stale, fetch fresh in background
+                    if (Date.now() - cached.timestamp > CACHE_TTL) {
+                        fetchFreshData().catch(() => {}); // Silent background refresh
+                    }
+                    return;
+                }
+
+                // No cache, fetch fresh
+                await fetchFreshData();
+            }
+
+            function getCachedData() {
+                try {
+                    const raw = localStorage.getItem(CACHE_KEY);
+                    if (!raw) return null;
+                    const cached = JSON.parse(raw);
+                    // Return if within stale window
+                    if (Date.now() - cached.timestamp < STALE_TTL) {
+                        return cached;
+                    }
+                    return null;
+                } catch {
+                    return null;
+                }
+            }
+
+            async function fetchFreshData() {
                 try {
                     const response = await fetch(CURRENTLY_INTO_API);
                     if (!response.ok) throw new Error("API error");
                     const data = await response.json();
+                    // Cache the response
+                    localStorage.setItem(CACHE_KEY, JSON.stringify({
+                        data,
+                        timestamp: Date.now()
+                    }));
                     updateDisplay(data);
                 } catch (error) {
                     console.error("Failed to fetch currently-into data:", error);
-                    document.getElementById("marquee-content").textContent = "Could not load current status";
+                    // Only show error if no cached data was displayed
+                    const cached = getCachedData();
+                    if (!cached) {
+                        document.getElementById("stacked-music")?.classList.remove("loading-skeleton");
+                    }
                 }
             }
 
@@ -103,6 +151,7 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
 
                 // Music
                 const stackedMusic = document.getElementById("stacked-music");
+                stackedMusic?.classList.remove("loading-skeleton");
                 if (musicText) {
                     stackedMusic.innerHTML = `<a href="https://www.last.fm/user/kylelucas93" target="_blank">${musicText.prefix}</a> <a href="${musicText.url}" target="_blank">${musicText.artist} - ${musicText.track}</a>`;
                 } else {
@@ -358,5 +407,25 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
 
     #currently-into a:visited {
         color: var(--text);
+    }
+
+    /* Loading skeleton for perceived performance */
+    .loading-skeleton {
+        height: 1.2em;
+        width: 60%;
+        background: linear-gradient(
+            90deg,
+            var(--bg-elevated) 25%,
+            var(--border) 50%,
+            var(--bg-elevated) 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 4px;
+    }
+
+    @keyframes shimmer {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
     }
 </style>

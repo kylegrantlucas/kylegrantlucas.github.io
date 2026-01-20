@@ -1,12 +1,19 @@
 /// <reference types="@fastly/js-compute" />
 import { ConfigStore } from "fastly:config-store";
+import { SimpleCache } from "fastly:cache";
+import { CacheOverride } from "fastly:cache-override";
 import { XMLParser } from "fast-xml-parser";
 
 // Configuration
 const LASTFM_USER = "kylelucas93";
 const LETTERBOXD_USER = "kylegrantlucas";
 const HARDCOVER_USER = "kylegrantlucas";
-const CACHE_TTL = 60; // seconds
+
+// Cache settings
+const CACHE_TTL = 60;           // Fresh content TTL (1 minute)
+const SWR_TTL = 300;            // Stale-while-revalidate window (5 minutes)
+const BACKEND_CACHE_TTL = 120;  // Backend fetch cache (2 minutes)
+const CACHE_KEY = "currently-into-v1";
 
 addEventListener("fetch", (event) => event.respondWith(handleRequest(event)));
 
@@ -24,30 +31,41 @@ async function handleRequest(event) {
   }
 
   try {
-    // Get secrets from Config Store
-    const secrets = new ConfigStore("secrets");
-    const lastfmApiKey = secrets.get("LASTFM_API_KEY");
-    const hardcoverToken = secrets.get("HARDCOVER_TOKEN");
+    // Try to get cached response, or fetch fresh data
+    const cacheEntry = await SimpleCache.getOrSet(CACHE_KEY, async () => {
+      // Get secrets from Config Store
+      const secrets = new ConfigStore("secrets");
+      const lastfmApiKey = secrets.get("LASTFM_API_KEY");
+      const hardcoverToken = secrets.get("HARDCOVER_TOKEN");
 
-    // Fetch all three sources in parallel
-    const [music, films, books] = await Promise.all([
-      fetchLastFm(lastfmApiKey),
-      fetchLetterboxd(),
-      fetchHardcover(hardcoverToken),
-    ]);
+      // Fetch all three sources in parallel
+      const [music, films, books] = await Promise.all([
+        fetchLastFm(lastfmApiKey),
+        fetchLetterboxd(),
+        fetchHardcover(hardcoverToken),
+      ]);
 
-    const response = {
-      music,
-      films,
-      books,
-      fetchedAt: new Date().toISOString(),
-    };
+      const responseData = {
+        music,
+        films,
+        books,
+        fetchedAt: new Date().toISOString(),
+      };
 
-    return new Response(JSON.stringify(response), {
+      return {
+        value: JSON.stringify(responseData),
+        ttl: CACHE_TTL,
+      };
+    });
+
+    // Read the cached body (text() returns a Promise)
+    const body = await cacheEntry.text();
+
+    return new Response(body, {
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control": `public, max-age=${CACHE_TTL}`,
-        "Surrogate-Control": `max-age=${CACHE_TTL}`,
+        "Cache-Control": `public, max-age=${CACHE_TTL}, stale-while-revalidate=${SWR_TTL}`,
+        "Surrogate-Control": `max-age=${CACHE_TTL}, stale-while-revalidate=${SWR_TTL}`,
         ...corsHeaders,
       },
     });
@@ -72,7 +90,13 @@ async function fetchLastFm(apiKey) {
   try {
     const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${apiKey}&format=json&limit=1`;
 
-    const response = await fetch(url, { backend: "lastfm" });
+    const response = await fetch(url, {
+      backend: "lastfm",
+      cacheOverride: new CacheOverride("override", {
+        ttl: BACKEND_CACHE_TTL,
+        swr: SWR_TTL,
+      }),
+    });
 
     if (!response.ok) {
       throw new Error(`Last.fm API error: ${response.status}`);
@@ -105,7 +129,13 @@ async function fetchLetterboxd() {
   try {
     const url = `https://letterboxd.com/${LETTERBOXD_USER}/rss/`;
 
-    const response = await fetch(url, { backend: "letterboxd" });
+    const response = await fetch(url, {
+      backend: "letterboxd",
+      cacheOverride: new CacheOverride("override", {
+        ttl: BACKEND_CACHE_TTL,
+        swr: SWR_TTL,
+      }),
+    });
 
     if (!response.ok) {
       throw new Error(`Letterboxd RSS error: ${response.status}`);
@@ -115,6 +145,8 @@ async function fetchLetterboxd() {
     const parser = new XMLParser({
       ignoreAttributes: false,
       attributeNamePrefix: "@_",
+      processEntities: true,
+      htmlEntities: true,
     });
     const feed = parser.parse(xml);
 
@@ -214,6 +246,10 @@ async function fetchHardcover(token) {
       body: JSON.stringify({
         query,
         variables: { username: HARDCOVER_USER },
+      }),
+      cacheOverride: new CacheOverride("override", {
+        ttl: BACKEND_CACHE_TTL,
+        swr: SWR_TTL,
       }),
     });
 
