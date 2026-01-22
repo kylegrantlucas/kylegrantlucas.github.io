@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://kylelucas.io",
+  site: "https://klr.dev",
   output: "static",
   publicDir: "./public",
   outDir: "./dist",

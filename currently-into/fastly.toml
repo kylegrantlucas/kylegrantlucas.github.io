@@ -1,7 +1,7 @@
 # This file describes a Fastly Compute package. To learn more visit:
 # https://www.fastly.com/documentation/reference/compute/fastly-toml
 
-authors = ["Kyle Lucas-Rodriguez <kyle@kylelucas.io>"]
+authors = ["Kyle Lucas-Rodriguez <kyle@klr.dev>"]
 description = "Currently Into - aggregates Last.fm, Letterboxd, and Hardcover data"
 language = "javascript"
 manifest_version = 3

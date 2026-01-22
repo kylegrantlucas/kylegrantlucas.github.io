@@ -8,10 +8,10 @@ export interface Props {
 
 const {
     title = "Kyle Lucas-Rodriguez",
-    description = "Software Engineer at Fastly, specializing in distributed systems and backend infrastructure."
+    description = "Software Engineer at Fastly, specializing in distributed systems and backend infrastructure.",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
+const canonicalURL = new URL(Astro.url.pathname, "https://klr.dev");
 ---
 
 <!doctype html>
@@ -40,8 +40,15 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
         <ClientRouter />
 
         <!-- Performance: Preconnect to API for faster TTFB -->
-        <link rel="preconnect" href="https://kyle-currently-into.global.ssl.fastly.net" crossorigin />
-        <link rel="dns-prefetch" href="https://kyle-currently-into.global.ssl.fastly.net" />
+        <link
+            rel="preconnect"
+            href="https://kyle-currently-into.global.ssl.fastly.net"
+            crossorigin
+        />
+        <link
+            rel="dns-prefetch"
+            href="https://kyle-currently-into.global.ssl.fastly.net"
+        />
     </head>
     <body>
         <header>
@@ -60,16 +67,32 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
         </main>
         <footer id="currently-into">
             <div id="stacked-music" class="loading-skeleton"></div>
-            <div><a href="https://letterboxd.com/kylegrantlucas" target="_blank" id="stacked-film"></a></div>
+            <div>
+                <a
+                    href="https://letterboxd.com/kylegrantlucas"
+                    target="_blank"
+                    id="stacked-film"></a>
+            </div>
             <ul id="stacked-film-list"></ul>
-            <div><a href="https://hardcover.app/@kylegrantlucas" target="_blank" id="stacked-book"></a></div>
+            <div>
+                <a
+                    href="https://hardcover.app/@kylegrantlucas"
+                    target="_blank"
+                    id="stacked-book"></a>
+            </div>
             <ul id="stacked-book-list"></ul>
-            <div><a href="https://hardcover.app/@kylegrantlucas" target="_blank" id="stacked-recently-read"></a></div>
+            <div>
+                <a
+                    href="https://hardcover.app/@kylegrantlucas"
+                    target="_blank"
+                    id="stacked-recently-read"></a>
+            </div>
             <ul id="stacked-recently-read-list"></ul>
         </footer>
         <script>
             // Use VCL service for WAF/DDoS protection layer
-            const CURRENTLY_INTO_API = "https://kyle-currently-into.global.ssl.fastly.net";
+            const CURRENTLY_INTO_API =
+                "https://kyle-currently-into.global.ssl.fastly.net";
             const CACHE_KEY = "currently-into-cache";
             const CACHE_TTL = 60 * 1000; // 1 minute in ms
             const STALE_TTL = 5 * 60 * 1000; // 5 minutes stale-while-revalidate
@@ -111,17 +134,25 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
                     if (!response.ok) throw new Error("API error");
                     const data = await response.json();
                     // Cache the response
-                    localStorage.setItem(CACHE_KEY, JSON.stringify({
-                        data,
-                        timestamp: Date.now()
-                    }));
+                    localStorage.setItem(
+                        CACHE_KEY,
+                        JSON.stringify({
+                            data,
+                            timestamp: Date.now(),
+                        }),
+                    );
                     updateDisplay(data);
                 } catch (error) {
-                    console.error("Failed to fetch currently-into data:", error);
+                    console.error(
+                        "Failed to fetch currently-into data:",
+                        error,
+                    );
                     // Only show error if no cached data was displayed
                     const cached = getCachedData();
                     if (!cached) {
-                        document.getElementById("stacked-music")?.classList.remove("loading-skeleton");
+                        document
+                            .getElementById("stacked-music")
+                            ?.classList.remove("loading-skeleton");
                     }
                 }
             }
@@ -133,8 +164,15 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
                 let bookText = "";
 
                 if (data.music) {
-                    const prefix = data.music.nowPlaying ? "💿 Spinning:" : "♫ Last played:";
-                    musicText = { prefix, artist: data.music.artist, track: data.music.track, url: data.music.url };
+                    const prefix = data.music.nowPlaying
+                        ? "💿 Spinning:"
+                        : "♫ Last played:";
+                    musicText = {
+                        prefix,
+                        artist: data.music.artist,
+                        track: data.music.track,
+                        url: data.music.url,
+                    };
                 }
 
                 if (data.films && data.films.length > 0) {
@@ -161,7 +199,10 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
                 }
 
                 // Films as list (linked to TMDB)
-                document.getElementById("stacked-film").textContent = data.films?.length ? "🎬 Watched:" : "";
+                document.getElementById("stacked-film").textContent = data.films
+                    ?.length
+                    ? "🎬 Watched:"
+                    : "";
                 const filmList = document.getElementById("stacked-film-list");
                 filmList.innerHTML = "";
                 if (data.films?.length) {
@@ -174,33 +215,44 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
                         link.target = "_blank";
                         link.textContent = `${film.title}${year}`;
                         li.appendChild(link);
-                        if (rating) li.appendChild(document.createTextNode(rating));
+                        if (rating)
+                            li.appendChild(document.createTextNode(rating));
                         filmList.appendChild(li);
                     });
                 }
 
                 // Books as list (linked to Amazon)
-                document.getElementById("stacked-book").textContent = data.books?.length ? "📖 Reading:" : "";
+                document.getElementById("stacked-book").textContent = data.books
+                    ?.length
+                    ? "📖 Reading:"
+                    : "";
                 const bookList = document.getElementById("stacked-book-list");
                 bookList.innerHTML = "";
                 if (data.books?.length) {
                     data.books.forEach((book) => {
                         const li = document.createElement("li");
                         const author = book.author ? ` by ${book.author}` : "";
-                        const percent = book.percent ? ` (${book.percent}%)` : "";
+                        const percent = book.percent
+                            ? ` (${book.percent}%)`
+                            : "";
                         const link = document.createElement("a");
                         link.href = book.amazonUrl;
                         link.target = "_blank";
                         link.textContent = book.title;
                         li.appendChild(link);
-                        li.appendChild(document.createTextNode(`${author}${percent}`));
+                        li.appendChild(
+                            document.createTextNode(`${author}${percent}`),
+                        );
                         bookList.appendChild(li);
                     });
                 }
 
                 // Recently read books (title -> Amazon, stars -> Hardcover)
-                document.getElementById("stacked-recently-read").textContent = data.recentlyRead?.length ? "📚 Recently Read:" : "";
-                const recentlyReadList = document.getElementById("stacked-recently-read-list");
+                document.getElementById("stacked-recently-read").textContent =
+                    data.recentlyRead?.length ? "📚 Recently Read:" : "";
+                const recentlyReadList = document.getElementById(
+                    "stacked-recently-read-list",
+                );
                 recentlyReadList.innerHTML = "";
                 if (data.recentlyRead?.length) {
                     data.recentlyRead.forEach((book) => {
@@ -459,7 +511,11 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
     }
 
     @keyframes shimmer {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
+        0% {
+            background-position: 200% 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
     }
 </style>

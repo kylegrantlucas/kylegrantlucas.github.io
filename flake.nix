@@ -1,5 +1,5 @@
 {
-  description = "kylelucas.io - personal site with Fastly Compute backend";
+  description = "klr.dev - personal site with Fastly Compute backend";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -19,7 +19,7 @@
           ];
 
           shellHook = ''
-            echo "kylelucas.io dev environment"
+            echo "klr.dev dev environment"
             echo "  node: $(node --version)"
             echo "  fastly: $(fastly version)"
           '';

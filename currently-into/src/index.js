@@ -10,15 +10,15 @@ const LETTERBOXD_USER = "kylegrantlucas";
 const HARDCOVER_USER = "kylegrantlucas";
 
 // Cache settings
-const CACHE_TTL = 60;           // Fresh content TTL (1 minute)
-const SWR_TTL = 300;            // Stale-while-revalidate window (5 minutes)
-const BACKEND_CACHE_TTL = 120;  // Backend fetch cache (2 minutes)
+const CACHE_TTL = 60; // Fresh content TTL (1 minute)
+const SWR_TTL = 300; // Stale-while-revalidate window (5 minutes)
+const BACKEND_CACHE_TTL = 120; // Backend fetch cache (2 minutes)
 const CACHE_KEY = "currently-into-v1";
 
 addEventListener("fetch", (event) => event.respondWith(handleRequest(event)));
 
 async function handleRequest(event) {
-  // CORS headers for cross-origin requests from kylelucas.io
+  // CORS headers for cross-origin requests from klr.dev
   const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, OPTIONS",
@@ -72,16 +72,13 @@ async function handleRequest(event) {
       },
     });
   } catch (error) {
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      {
-        status: 500,
-        headers: {
-          "Content-Type": "application/json",
-          ...corsHeaders,
-        },
-      }
-    );
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+        ...corsHeaders,
+      },
+    });
   }
 }
 
@@ -164,8 +161,11 @@ async function fetchLetterboxd() {
       const title = item.title || "";
       const link = item.link || "";
       const memberRating = item["letterboxd:memberRating"];
-      const rating = memberRating ? convertToStars(parseFloat(memberRating)) : null;
-      const filmTitle = item["letterboxd:filmTitle"] || title.split(",")[0].trim();
+      const rating = memberRating
+        ? convertToStars(parseFloat(memberRating))
+        : null;
+      const filmTitle =
+        item["letterboxd:filmTitle"] || title.split(",")[0].trim();
       const filmYear = item["letterboxd:filmYear"] || null;
       const tmdbId = item["tmdb:movieId"] || null;
 
@@ -263,7 +263,7 @@ async function fetchRecentlyRead(token) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         query,
@@ -312,7 +312,9 @@ async function fetchRecentlyRead(token) {
         } else if (edition?.isbn_13) {
           amazonUrl = `https://www.amazon.com/dp/${edition.isbn_13}`;
         } else {
-          const amazonQuery = encodeURIComponent(`${book.title}${author ? ` ${author}` : ""}`);
+          const amazonQuery = encodeURIComponent(
+            `${book.title}${author ? ` ${author}` : ""}`,
+          );
           amazonUrl = `https://www.amazon.com/s?k=${amazonQuery}&i=stripbooks`;
         }
 
@@ -373,7 +375,7 @@ async function fetchHardcover(token) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         query,
@@ -403,7 +405,9 @@ async function fetchHardcover(token) {
       const author = book.contributions?.[0]?.author?.name || null;
 
       // Progress is already a percentage from user_book_reads
-      const percent = latestRead?.progress ? Math.round(latestRead.progress) : null;
+      const percent = latestRead?.progress
+        ? Math.round(latestRead.progress)
+        : null;
 
       // Generate Amazon URL - prefer ASIN/ISBN for direct product link, fallback to search
       let amazonUrl;
@@ -415,7 +419,9 @@ async function fetchHardcover(token) {
         amazonUrl = `https://www.amazon.com/dp/${edition.isbn_13}`;
       } else {
         // Fallback to search
-        const amazonQuery = encodeURIComponent(`${book.title}${author ? ` ${author}` : ""}`);
+        const amazonQuery = encodeURIComponent(
+          `${book.title}${author ? ` ${author}` : ""}`,
+        );
         amazonUrl = `https://www.amazon.com/s?k=${amazonQuery}&i=stripbooks`;
       }
 
