@@ -64,6 +64,8 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
             <ul id="stacked-film-list"></ul>
             <div><a href="https://hardcover.app/@kylegrantlucas" target="_blank" id="stacked-book"></a></div>
             <ul id="stacked-book-list"></ul>
+            <div><a href="https://hardcover.app/@kylegrantlucas" target="_blank" id="stacked-recently-read"></a></div>
+            <ul id="stacked-recently-read-list"></ul>
         </footer>
         <script>
             // Use VCL service for WAF/DDoS protection layer
@@ -193,6 +195,38 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kylelucas.io");
                         li.appendChild(link);
                         li.appendChild(document.createTextNode(`${author}${percent}`));
                         bookList.appendChild(li);
+                    });
+                }
+
+                // Recently read books (title -> Amazon, stars -> Hardcover)
+                document.getElementById("stacked-recently-read").textContent = data.recentlyRead?.length ? "📚 Recently Read:" : "";
+                const recentlyReadList = document.getElementById("stacked-recently-read-list");
+                recentlyReadList.innerHTML = "";
+                if (data.recentlyRead?.length) {
+                    data.recentlyRead.forEach((book) => {
+                        const li = document.createElement("li");
+                        const author = book.author ? ` by ${book.author}` : "";
+
+                        // Title links to Amazon
+                        const titleLink = document.createElement("a");
+                        titleLink.href = book.amazonUrl;
+                        titleLink.target = "_blank";
+                        titleLink.textContent = book.title;
+                        li.appendChild(titleLink);
+
+                        li.appendChild(document.createTextNode(author));
+
+                        // Stars link to Hardcover
+                        if (book.rating) {
+                            li.appendChild(document.createTextNode(" "));
+                            const ratingLink = document.createElement("a");
+                            ratingLink.href = book.hardcoverUrl;
+                            ratingLink.target = "_blank";
+                            ratingLink.textContent = book.rating;
+                            li.appendChild(ratingLink);
+                        }
+
+                        recentlyReadList.appendChild(li);
                     });
                 }
             }

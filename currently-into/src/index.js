@@ -38,17 +38,19 @@ async function handleRequest(event) {
       const lastfmApiKey = secrets.get("LASTFM_API_KEY");
       const hardcoverToken = secrets.get("HARDCOVER_TOKEN");
 
-      // Fetch all three sources in parallel
-      const [music, films, books] = await Promise.all([
+      // Fetch all sources in parallel
+      const [music, films, books, recentlyRead] = await Promise.all([
         fetchLastFm(lastfmApiKey),
         fetchLetterboxd(),
         fetchHardcover(hardcoverToken),
+        fetchRecentlyRead(hardcoverToken),
       ]);
 
       const responseData = {
         music,
         films,
         books,
+        recentlyRead,
         fetchedAt: new Date().toISOString(),
       };
 
@@ -199,6 +201,136 @@ function convertToStars(rating) {
   if (hasHalf) stars += "\u00BD"; // ½
 
   return stars;
+}
+
+/**
+ * Convert numeric rating (1-5) to star display
+ */
+function convertRatingToStars(rating) {
+  if (!rating || rating < 0) return null;
+
+  const fullStars = Math.floor(rating);
+  const hasHalf = rating % 1 >= 0.5;
+
+  let stars = "\u2605".repeat(fullStars); // ★
+  if (hasHalf) stars += "\u00BD"; // ½
+
+  return stars;
+}
+
+/**
+ * Fetch recently read books from Hardcover GraphQL API (last 90 days)
+ */
+async function fetchRecentlyRead(token) {
+  try {
+    const query = `
+      query GetRecentlyRead($username: citext!) {
+        users(where: { username: { _eq: $username } }) {
+          user_books(
+            where: { status_id: { _eq: 3 } }
+            order_by: { updated_at: desc }
+            limit: 20
+          ) {
+            rating
+            user_book_reads(
+              limit: 1
+              order_by: { finished_at: desc_nulls_last }
+              where: { finished_at: { _is_null: false } }
+            ) {
+              finished_at
+              edition {
+                isbn_10
+                isbn_13
+                asin
+              }
+            }
+            book {
+              title
+              slug
+              contributions {
+                author {
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const response = await fetch("https://api.hardcover.app/v1/graphql", {
+      backend: "hardcover",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        query,
+        variables: { username: HARDCOVER_USER },
+      }),
+      cacheOverride: new CacheOverride("override", {
+        ttl: BACKEND_CACHE_TTL,
+        swr: SWR_TTL,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Hardcover API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const userBooks = data.data?.users?.[0]?.user_books;
+
+    if (!userBooks || userBooks.length === 0) {
+      return [];
+    }
+
+    // Calculate 90 days ago
+    const ninetyDaysAgo = new Date();
+    ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+    return userBooks
+      .filter((userBook) => {
+        const finishedAt = userBook.user_book_reads?.[0]?.finished_at;
+        if (!finishedAt) return false;
+        return new Date(finishedAt) >= ninetyDaysAgo;
+      })
+      .map((userBook) => {
+        const book = userBook.book;
+        const latestRead = userBook.user_book_reads?.[0];
+        const edition = latestRead?.edition;
+        const author = book.contributions?.[0]?.author?.name || null;
+        const rating = convertRatingToStars(userBook.rating);
+
+        // Generate Amazon URL
+        let amazonUrl;
+        if (edition?.asin) {
+          amazonUrl = `https://www.amazon.com/dp/${edition.asin}`;
+        } else if (edition?.isbn_10) {
+          amazonUrl = `https://www.amazon.com/dp/${edition.isbn_10}`;
+        } else if (edition?.isbn_13) {
+          amazonUrl = `https://www.amazon.com/dp/${edition.isbn_13}`;
+        } else {
+          const amazonQuery = encodeURIComponent(`${book.title}${author ? ` ${author}` : ""}`);
+          amazonUrl = `https://www.amazon.com/s?k=${amazonQuery}&i=stripbooks`;
+        }
+
+        // Hardcover book page URL
+        const hardcoverUrl = `https://hardcover.app/books/${book.slug}`;
+
+        return {
+          title: book.title,
+          author,
+          rating,
+          amazonUrl,
+          hardcoverUrl,
+        };
+      });
+  } catch (error) {
+    console.error("Hardcover recently read fetch error:", error);
+    return [];
+  }
 }
 
 /**
