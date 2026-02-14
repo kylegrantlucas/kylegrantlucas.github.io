@@ -286,17 +286,36 @@ async function fetchRecentlyRead(token) {
       return [];
     }
 
-    // Calculate 90 days ago
-    const ninetyDaysAgo = new Date();
-    ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+    // Filter to books with a finish date, sorted most recent first
+    const withFinishDate = userBooks.filter(
+      (userBook) => userBook.user_book_reads?.[0]?.finished_at,
+    );
 
-    return userBooks
-      .filter((userBook) => {
-        const finishedAt = userBook.user_book_reads?.[0]?.finished_at;
-        if (!finishedAt) return false;
-        return new Date(finishedAt) >= ninetyDaysAgo;
-      })
-      .map((userBook) => {
+    // Get start of current month (UTC)
+    const now = new Date();
+    const startOfMonth = new Date(
+      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1),
+    );
+
+    // Books finished this month
+    const thisMonth = withFinishDate.filter(
+      (userBook) =>
+        new Date(userBook.user_book_reads[0].finished_at) >= startOfMonth,
+    );
+
+    // Guarantee a minimum of 3: backfill from older books if needed
+    let selected;
+    if (thisMonth.length >= 3) {
+      selected = thisMonth;
+    } else {
+      const older = withFinishDate.filter(
+        (userBook) =>
+          new Date(userBook.user_book_reads[0].finished_at) < startOfMonth,
+      );
+      selected = [...thisMonth, ...older.slice(0, 3 - thisMonth.length)];
+    }
+
+    return selected.map((userBook) => {
         const book = userBook.book;
         const latestRead = userBook.user_book_reads?.[0];
         const edition = latestRead?.edition;
