@@ -5,6 +5,13 @@ import { getResumeData } from "../utils/resume.js";
 
 // Fetch resume data
 const resume = await getResumeData();
+
+// Get 2 most recent previous companies, deduplicated by name
+const currentCompany = resume.work[0].name;
+const previousCompanies = resume.work
+    .filter((job) => job.name !== currentCompany)
+    .filter((job, i, arr) => arr.findIndex((j) => j.name === job.name) === i)
+    .slice(0, 2);
 ---
 
 <Layout>
@@ -13,22 +20,22 @@ const resume = await getResumeData();
     <h2>About</h2>
 
     <p>
-        I'm a <strong>{resume.basics.label}</strong> based in {
-            resume.basics.location.city
-        }.
+        I'm a <strong>{resume.work[0].position}</strong>, working on web security and distributed systems.
     </p>
 
     <p>
-        Currently I work at <a href={resume.work[0].url}
-            >{resume.work[0].name}</a
-        >.
+        Currently I work at <a href={resume.work[0].url}>{resume.work[0].name}</a>, building edge security infrastructure.
     </p>
 
     <p>
-        Previously I have worked at <a href={resume.work[2].url}
-            >{resume.work[2].name}</a
-        > and <a href={resume.work[3].url}>{resume.work[3].name}</a>.
-    </p>
+        Previously I have worked at {
+            previousCompanies.map((company, i) => (
+                <span>
+                    {i > 0 && " and "}
+                    <a href={company.url}>{company.name}</a>
+                </span>
+            ))
+        }.</p>
 
     <h2>Connect</h2>
 
