@@ -1,5 +1,5 @@
 export async function getResumeData() {
-  const response = await fetch('https://raw.githubusercontent.com/kylegrantlucas/resume/master/resume.json');
+  const response = await fetch('https://raw.githubusercontent.com/kylegrantlucas/resume/main/resume.json');
   return response.json();
 }
 

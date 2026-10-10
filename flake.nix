@@ -16,6 +16,7 @@
           packages = with pkgs; [
             nodejs_22      # Node.js 22 LTS
             fastly         # Fastly CLI for Compute deployment
+            just           # currently-into/justfile
           ];
 
           shellHook = ''
