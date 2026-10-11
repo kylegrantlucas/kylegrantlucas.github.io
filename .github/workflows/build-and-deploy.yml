@@ -29,15 +29,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
+          cache: npm
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
-      - name: Download Resume
-        run: |
-          mkdir -p src/_data && curl -o src/_data/resume.json https://raw.githubusercontent.com/kylegrantlucas/resume/master/resume.json
       - name: Install Node.js dependencies
-        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+        run: npm ci
       - name: Build site
         run: npm run build
       - name: Upload artifact

@@ -1,0 +1,25 @@
+# currently-into: Fastly Compute service (service_id in fastly.toml)
+# Secrets live in 1Password (vault Private): "kylelucas.io - LASTFM_API_KEY", "kylelucas.io - HARDCOVER_TOKEN".
+
+default: build
+
+build:
+    npm ci
+    npm run build
+
+# Local server: renders secrets.json from 1Password for the duration of the run, then deletes it.
+dev: build
+    #!/usr/bin/env bash
+    set -euo pipefail
+    trap 'rm -f secrets.json' EXIT
+    op inject -f -i secrets.tpl.json -o secrets.json
+    fastly compute serve
+
+deploy: build
+    fastly compute deploy
+
+# Push secrets from 1Password into the production config store named "secrets" (values piped, never echoed).
+# STORE_ID: `fastly config-store list`
+push-secrets STORE_ID:
+    op read "op://Private/kylelucas.io - LASTFM_API_KEY/credential" | fastly config-store-entry update --store-id {{STORE_ID}} --key LASTFM_API_KEY --upsert --stdin
+    op read "op://Private/kylelucas.io - HARDCOVER_TOKEN/credential" | fastly config-store-entry update --store-id {{STORE_ID}} --key HARDCOVER_TOKEN --upsert --stdin
